@@ -21,7 +21,7 @@
 #define ALTERNATE_PORT 8050
 #define MAX_BACKUPS 2
 #define MAX_THREADS 100
-
+#define MAX_STORAGE_SERVERS 10
 // Semaphore declarations with new names
 sem_t semaphore_alpha, semaphore_beta;
 
@@ -482,9 +482,9 @@ int main() {
     }
 
     // Initialize storage servers based on user input with added checks
-    int total_storage_servers;
-    printf("Enter the number of storage servers: ");
-    if (scanf("%d", &total_storage_servers) != 1 || total_storage_servers <= 0) {
+    int total_storage_servers= MAX_STORAGE_SERVERS;
+   
+    if (total_storage_servers <= 0) {
         fprintf(stderr, "Invalid input for the number of storage servers.\n");
         fclose(log_file_ptr);
         exit(EXIT_FAILURE);
@@ -570,33 +570,7 @@ int main() {
     }
     printf("Server is now listening for incoming connections...\n");
 
-    // Accept initial storage server connections
-    // for (int i = 0; i < total_storage_servers; i++) {
-    //     backup_servers[i].has_dup = 0;
-    //     client_addr_len = sizeof(client_address_struct);
-    //     incoming_socket_fd = accept(server_socket_fd, (struct sockaddr *)&client_address_struct, &client_addr_len);
-    //     if (incoming_socket_fd == -1) {
-    //         perror("Failed to accept initial storage server connection");
-    //         continue; // Continue accepting other connections
-    //     }
 
-    //     active_storage_count++;
-    //     memset(connection_buffer, 0, MAX_CHARS);
-
-    //     // Receive initial message from storage server
-    //     if (recv(incoming_socket_fd, connection_buffer, sizeof(connection_buffer), 0) == -1) {
-    //         perror("Error receiving initial message from storage server");
-    //         close(incoming_socket_fd);
-    //         continue;
-    //     }
-
-    //     // Create a thread to handle the storage server
-    //     if (pthread_create(&storage_threads_pool[i], NULL, storage_server_handler, &incoming_socket_fd) != 0) {
-    //         fprintf(stderr, "Failed to create thread for storage server [%d]\n", i);
-    //         close(incoming_socket_fd);
-    //         continue;
-    //     }
-    // }
 
     // Continuously accept client and additional storage server connections
     while (1) {

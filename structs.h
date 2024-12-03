@@ -34,7 +34,7 @@ typedef struct ss_backup_info
 } ss_backup_info;
 
 #define MAX_CHARS 100
-#define CHUNK_SIZE 16
+#define CHUNK_SIZE 4096
 #define MAX_FILE_LENGTH 999999
 
 struct LRUNode

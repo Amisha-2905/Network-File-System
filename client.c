@@ -12,27 +12,11 @@ char buffer[CHUNK_SIZE];
 
 // Function to receive chunks of data from the server
 int receive_chunks(int sockid) {
-    int num_chunks = 0;
+    memset(buffer, 0, CHUNK_SIZE);
     ssize_t n_bytes;
-
-    while (1) {
-        memset(buffer, 0, CHUNK_SIZE);
-        n_bytes = recv(sockid, buffer, CHUNK_SIZE, 0);
-        if (n_bytes < 0) {
-            perror("[-] Receive error");
-            return -1;
-        }
-
-        if (strncmp(buffer, "<STOP>", 6) == 0) {
-            break;
-        } else {
-            printf("%s", buffer);
-            fflush(stdout);
-        }
-        num_chunks++;
-    }
-
-    return num_chunks;
+    recv(sockid, buffer, CHUNK_SIZE, 0);
+    printf("Recieved |%s|\n",buffer);
+    return 1;
 }
 
 int main() {
@@ -88,13 +72,7 @@ int main() {
     int c;
     while ((c = getchar()) != '\n' && c != EOF);
 
-    // Get user input to send to server
-    printf("Enter message to send: ");
-    if (fgets(send_buffer, BUFFER_SIZE, stdin) == NULL) {
-        fprintf(stderr, "Error reading input.\n");
-        close(sock_fd);
-        exit(EXIT_FAILURE);
-    }
+    strcpy(send_buffer,"CL\n");
 
     // Send initial message to server
     bytes_sent = send(sock_fd, send_buffer, strlen(send_buffer), 0);
@@ -111,7 +89,7 @@ int main() {
         printf("Enter command: ");
         if (fgets(send_buffer, BUFFER_SIZE, stdin) == NULL) {
             fprintf(stderr, "Error reading command.\n");
-            break;
+            continue;
         }
 
         // Remove newline character from input
@@ -121,7 +99,9 @@ int main() {
         }
 
         // Send command to server
+         printf("Sending Started 1\n");
         bytes_sent = send(sock_fd, send_buffer, strlen(send_buffer), 0);
+        printf("Sending Finished 1\n");
         if (bytes_sent < 0) {
             perror("[-] Failed to send command");
             break;
@@ -129,28 +109,27 @@ int main() {
 
         // Receive next_step indicator from server
         int next_step = -1;
-        int retry_count = 0;
-        while ((bytes_received = recv(sock_fd, &next_step, sizeof(int), 0)) < 0) {
-            usleep(10000); // Sleep for 10ms
-            retry_count++;
-            if (retry_count >= 20) {
-                printf("[400] Server doesn't seem to be responding. Please try again later.\n");
+        printf("Recieving Started 2\n");
+        if((bytes_received = recv(sock_fd, &next_step, sizeof(int), 0)) < 0){
+                printf("Recieving Failed 2\n");
                 break;
-            }
         }
-
+        
+        printf("Recieving Finished 2\n");
+        printf("Recieving Started 3\n");
         if (bytes_received < 0) {
             break;
         }
-
+        printf("Recieving Finished 3\n");
+        printf("Recieving Started 4\n");
         // Receive and display chunks from server
         if (receive_chunks(sock_fd) < 0) {
+            printf("Sever is down Try Again\n");
             break;
         }
-
-        printf("%s\n", send_buffer);
-
-        if (next_step) {
+        printf("Recieving Finished 4 got |%s|\n",buffer);
+        if(strstr(buffer,"[404]")!=NULL){
+            printf("Breaking the code\n");
             continue;
         }
 
@@ -161,7 +140,7 @@ int main() {
             break;
         }
         memset(ss_struct, 0, sizeof(ss_info));
-
+        printf("Trying to get SS Info\n");
         // Receive ss_info from server
         bytes_received = recv(sock_fd, ss_struct, sizeof(ss_info), 0);
         if (bytes_received < 0) {
@@ -169,7 +148,7 @@ int main() {
             free(ss_struct);
             break;
         }
-
+        printf("Finished  to get SS Info\n");
         // Extract SS server details
         char ss_ip[30];
         strncpy(ss_ip, ss_struct->ip_addr, sizeof(ss_ip) - 1);
@@ -197,7 +176,7 @@ int main() {
             free(ss_struct);
             exit(EXIT_FAILURE);
         }
-
+        printf("Conecting to SS server\n");
         // Connect to SS server
         if (connect(ss_sock, (struct sockaddr *)&ss_addr, sizeof(ss_addr)) < 0) {
             perror("[-] Connection to SS server failed");

@@ -61,53 +61,7 @@ int logMessage(const char *message, int socket, int status)
  */
 int sendChunks(int socket_descriptor, char *data_buffer)
 {
-    if (data_buffer == NULL)
-    {
-        fprintf(stderr, "sendChunks: Data buffer is NULL.\n");
-        return -1;
-    }
-
-    int total_length = strlen(data_buffer) + 1;
-    int full_chunks = total_length / CHUNK_BUFFER_SIZE;
-    int remaining_bytes = total_length % CHUNK_BUFFER_SIZE;
-
-    // Send full chunks
-    for (int chunk_index = 0; chunk_index < full_chunks; chunk_index++)
-    {
-        int send_status = send(socket_descriptor, &data_buffer[chunk_index * CHUNK_BUFFER_SIZE], CHUNK_BUFFER_SIZE, 0);
-        if (send_status == -1)
-        {
-            perror("sendChunks: Failed to send data chunk");
-            return -1;
-        }
-
-        // Dummy condition to alter control flow
-        if (chunk_index % 10 == 0 && chunk_index != 0)
-        {
-            // No operation; placeholder for potential future logic
-        }
-    }
-
-    // Send remaining bytes if any
-    if (remaining_bytes > 0)
-    {
-        int send_status = send(socket_descriptor, &data_buffer[full_chunks * CHUNK_BUFFER_SIZE], remaining_bytes, 0);
-        if (send_status == -1)
-        {
-            perror("sendChunks: Failed to send remaining data");
-            return -1;
-        }
-    }
-
-    // Send termination signal
-    int terminate_status = send(socket_descriptor, termination_signal, CHUNK_BUFFER_SIZE, 0);
-    if (terminate_status == -1)
-    {
-        perror("sendChunks: Failed to send termination signal");
-        return -1;
-    }
-
-    printf("Termination signal sent successfully.\n");
+    send(socket_descriptor,data_buffer,strlen(data_buffer),0);
     return 0;
 }
 

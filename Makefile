@@ -6,4 +6,4 @@ ss:
 	./SS 5000 8001
 cl:
 	gcc client.c -o client
-	./client		
+	./client	
