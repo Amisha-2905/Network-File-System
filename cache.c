@@ -27,6 +27,7 @@ struct LRUcache *initLRUcache(int capacity)
  * If the cache is at capacity, removes the least recently used item.
  */
 void enqueue(struct LRUcache *cache, char *key, ss_info *value) {
+    
     if (cache == NULL || key == NULL || value == NULL) {
         fprintf(stderr, "enqueue: Invalid arguments.\n");
         return;

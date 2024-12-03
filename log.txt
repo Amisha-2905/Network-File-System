@@ -1,8 +1,0 @@
-[127.0.0.1:34290] READ ./dir1 - Status: 0
-[127.0.0.1:38834] READ ./dir1 - Status: 0
-[127.0.0.1:57714] READ ./dir1 - Status: 0
-[127.0.0.1:39774] READ ./dir1 - Status: 0
-[127.0.0.1:39474] READ ./dir1 - Status: 0
-[127.0.0.1:46786] READ ./dir1 - Status: 0
-[127.0.0.1:46786] READ ./dir2 - Status: 0
-[127.0.0.1:46786] READ ./dir3 - Status: 0

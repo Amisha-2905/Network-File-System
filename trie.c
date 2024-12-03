@@ -3,6 +3,37 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#define GREEN "\033[1;32m"
+#define RESET "\033[0m"
+
+void printTrie(struct TrieNode *node, char *prefix, int level) {
+    if (node == NULL) {
+        return;
+    }
+
+    // If the node is the end of a word, print the prefix
+    if (node->isEndOfWord) {
+        printf(GREEN "%s\n" RESET, prefix);
+    }
+
+    // Recursively print each child node
+    for (int i = 0; i < ALPHABET_SIZE; i++) {
+        if (node->children[i] != NULL) {
+            size_t new_len = strlen(prefix);
+            char new_prefix[new_len + 2]; // +2 for character and null terminator
+            snprintf(new_prefix, sizeof(new_prefix), "%s%c", prefix, (char)i);
+            printTrie(node->children[i], new_prefix, level + 1);
+        }
+    }
+}
+
+/**
+ * Wrapper function to start printing the Trie from the root.
+ */
+void printTrieWrapper(struct TrieNode *root) {
+    char prefix[1] = ""; // Initial prefix is empty
+    printTrie(root, prefix, 0);
+}
 
 /**
  * Allocates and initializes a new TrieNode.
@@ -82,6 +113,7 @@ void insert(struct TrieNode *root, const char *key, ss_info *ptr) {
     // Mark the end of the word and assign the ss_info pointer
     current->isEndOfWord = true;
     current->ss_ptr = ptr;
+    printTrieWrapper(root);
 }
 
 /**
@@ -89,6 +121,8 @@ void insert(struct TrieNode *root, const char *key, ss_info *ptr) {
  * Returns NULL if the key is not found.
  */
 ss_info *search(struct TrieNode *root, char *key) {
+    printf("Searching tries\n");
+    printTrieWrapper(root);
     if (root == NULL || key == NULL) {
         fprintf(stderr, "search: Invalid arguments provided.\n");
         return NULL;
@@ -112,8 +146,10 @@ ss_info *search(struct TrieNode *root, char *key) {
         if (current_char == '/') {
             if (slash_count == 1 && has_dot) {
                 if (current->children[current_char] && current->children[current_char]->ss_ptr) {
+                    printf("Found 0: Return %s\n",current->children[current_char]->ss_ptr);
                     return current->children[current_char]->ss_ptr;
                 } else {
+                    printf("Found 1: Return NULL\n");
                     return NULL;
                 }
             }
@@ -122,6 +158,7 @@ ss_info *search(struct TrieNode *root, char *key) {
 
         // If the child node doesn't exist, the key isn't present
         if (current_char >= ALPHABET_SIZE || current->children[current_char] == NULL) {
+            printf("Found 2: Return NULL\n");
             return NULL;
         }
 
@@ -131,8 +168,10 @@ ss_info *search(struct TrieNode *root, char *key) {
 
     // If the end of the key is reached, return the associated ss_info pointer
     if (current->isEndOfWord) {
+        printf("Found 3: %s\n",current->ss_ptr->nm_port);
         return current->ss_ptr;
     }
 
     return NULL;
 }
+

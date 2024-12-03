@@ -4,7 +4,7 @@
 #include <unistd.h>
 #include <arpa/inet.h>
 #include "structs.h"
-
+#include <netinet/tcp.h>
 #define TIMEFRAME 1.0f
 #define BUFFER_SIZE 100
 
@@ -20,10 +20,9 @@ int receive_chunks(int sockid) {
 }
 
 int main() {
-    char ip_address[30];
-    printf("Enter Naming server ip address: ");
-    scanf("%s",ip_address);
-    int port_number = 0;
+    char ip_address[30]="127.0.0.1";
+  
+    int port_number = 8000;
     int sock_fd = -1;
     struct sockaddr_in server_addr;
     char send_buffer[BUFFER_SIZE];
@@ -31,12 +30,7 @@ int main() {
     ssize_t bytes_sent = 0;
     ssize_t bytes_received = 0;
 
-    // Prompt user for port number
-    printf("Enter port number: ");
-    if (scanf("%d", &port_number) != 1) {
-        fprintf(stderr, "Invalid input for port number.\n");
-        exit(EXIT_FAILURE);
-    }
+    
 
     // Create socket
     sock_fd = socket(AF_INET, SOCK_STREAM, 0);
@@ -69,8 +63,7 @@ int main() {
     memset(receive_buffer, 0, BUFFER_SIZE);
 
     // Flush remaining input
-    int c;
-    while ((c = getchar()) != '\n' && c != EOF);
+
 
     strcpy(send_buffer,"CL\n");
 
@@ -156,7 +149,7 @@ int main() {
         int ss_port = ntohs(ss_struct->port_no_client);
         int ss_sock = -1;
         struct sockaddr_in ss_addr;
-
+        printf("Recieved IP Address: %s, Port Number: %d\n",ss_ip,ss_port);
         // Create socket for SS server
         ss_sock = socket(AF_INET, SOCK_STREAM, 0);
         if (ss_sock < 0) {
@@ -165,11 +158,13 @@ int main() {
             exit(EXIT_FAILURE);
         }
         printf("[+] TCP client SS socket created successfully.\n");
+          int flag=1;
+    if(setsockopt(ss_sock,IPPROTO_TCP,TCP_NODELAY,(char* )&flag,sizeof(flag)));
 
         // Initialize SS server address structure
         memset(&ss_addr, 0, sizeof(ss_addr));
         ss_addr.sin_family = AF_INET;
-        ss_addr.sin_port = htons(ss_port);
+        ss_addr.sin_port = ss_port;
         if (inet_pton(AF_INET, ss_ip, &ss_addr.sin_addr) <= 0) {
             perror("[-] Invalid SS IP address");
             close(ss_sock);
@@ -191,7 +186,7 @@ int main() {
         printf("Connected to SS server.\n");
 
         // Notify NM server of successful connection
-        int flag = 1;
+        
         if (send(sock_fd, &flag, sizeof(int), 0) < 0) {
             perror("[-] Failed to send flag to NM server");
             close(ss_sock);

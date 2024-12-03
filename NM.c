@@ -18,7 +18,7 @@
 #define MAX_LOG_ENTRY 256
 #define INITIAL_BACKUP_INDEX -1
 #define DEFAULT_PORT 8000
-#define ALTERNATE_PORT 8050
+#define ALTERNATE_PORT 8000
 #define MAX_BACKUPS 2
 #define MAX_THREADS 100
 #define MAX_STORAGE_SERVERS 10
@@ -300,7 +300,7 @@ void *storage_server_handler(void *param) {
     }
 
     printf("Storage server [%s:%d] connected and information stored.\n",
-           received_info.ip_addr, ntohs(received_info.port_no_ns));
+           received_info.ip_addr, received_info.port_no_client);
 
     // Search for existing storage servers to create backups
     int storage_idx = locateStorageServer(received_info.port_no_ns);

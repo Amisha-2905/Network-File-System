@@ -555,12 +555,10 @@ int execute(char *command_input, int *client_socket, struct LRUcache *cache_queu
             return -1;
         }
 
-        ss_info *server_struct = getFromLRUcache(cache_queue, additional_param);
-        if (server_struct == NULL)
-        {
-            server_struct = search(trie_root_node, additional_param);
-            enqueue(cache_queue, additional_param, server_struct);
-        }
+      
+            ss_info* server_struct = search(trie_root_node, additional_param);
+            printf("GOT %s %d\n",server_struct->ip_addr,server_struct->nm_port);
+        
 
         if (server_struct == NULL)
         {
@@ -579,7 +577,7 @@ int execute(char *command_input, int *client_socket, struct LRUcache *cache_queu
             perror("execute: Failed to send success flag");
             return -1;
         }
-
+        printf("Sending SS IP: %s Port: %s\n",server_struct->ip_addr,server_struct->port_no_client);
         char success_response[MAX_COMMAND_LENGTH];
         strncpy(success_response, "[200] SS details retrieved\n", sizeof(success_response) - 1);
         success_response[sizeof(success_response) - 1] = '\0';
@@ -589,6 +587,7 @@ int execute(char *command_input, int *client_socket, struct LRUcache *cache_queu
             fprintf(stderr, "execute: Failed to send success response to client.\n");
             return -1;
         }
+      
 
         if (send(*client_socket, server_struct, sizeof(ss_info), 0) == -1)
         {

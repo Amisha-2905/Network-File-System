@@ -10,7 +10,7 @@
 #include <sys/stat.h>
 #include <netdb.h>
 #include <unistd.h>
-
+#include <netinet/tcp.h>
 // Storage Server Constants
 #define MAX_CLIENTS 100
 #define MAX_CHARS 100
@@ -419,7 +419,7 @@ int receiveChunks(int socket_descriptor, char *destination_buffer)
         return -1;
     }
 
-    return chunk_counter;
+    return 1;
 }
 
 // File and Directory Operations
@@ -1001,9 +1001,8 @@ int main(int argc, char *argv[])
 
     char serv_ip[32]; // Buffer for server IP address
     get_local_ip(serv_ip, sizeof(serv_ip));
-    char nm_ip[32];
-    printf("Enter Naming server Ip address: ");
-    scanf ("%s",nm_ip);
+    char nm_ip[32]="127.0.0.1";
+    
 
     SS_INFO ss_info = (SS_INFO)malloc(sizeof(struct SS_INFO));
     if (ss_info == NULL)
@@ -1052,7 +1051,7 @@ int main(int argc, char *argv[])
         ss_info->accessible_paths[i][sizeof(ss_info->accessible_paths[i]) - 1] = '\0';
     }
 
-    int nm_sock, ss_sock;
+    int nm_sock, ss_sock,flag=1;
     struct sockaddr_in nm_addr, ss_addr;
     socklen_t addr_size;
 
@@ -1064,7 +1063,7 @@ int main(int argc, char *argv[])
         exit(EXIT_FAILURE);
     }
     ss_info->sockid = ss_sock;
-
+    if(setsockopt(ss_sock,IPPROTO_TCP,TCP_NODELAY,(char* )&flag,sizeof(flag)));
     // Initialize Naming Server socket
     nm_sock = socket(AF_INET, SOCK_STREAM, 0);
     if (nm_sock < 0)
@@ -1121,6 +1120,7 @@ int main(int argc, char *argv[])
         perror("Naming Server Reverse socket creation failed");
         exit(EXIT_FAILURE);
     }
+    if(setsockopt(nm_sock,IPPROTO_TCP,TCP_NODELAY,(char* )&flag,sizeof(flag)));
 
     memset(&nm_addr, 0, sizeof(nm_addr));
     nm_addr.sin_family = AF_INET;
