@@ -78,7 +78,7 @@ int logMessage(const char *message, int socket, int status);
 int sendChunks(int socket_descriptor, char *data_buffer);
 int receiveChunks(int socket_descriptor, char *destination_buffer);
 int ReadFile(int sockid, char *token, char *return_buffer);
-int WriteFile(int sockid, char *token, char *return_buffer);
+int WriteFile(int sockid, char *token,char* content ,char *return_buffer);
 int GetSizeAndPermissions(char *token, char *return_buffer);
 int getFilesInDir(char *token, char *return_buffer);
 int PutFile(int sockid, char *token, char *return_buffer);
@@ -456,68 +456,43 @@ int ReadFile(int socket_fd, char *file_token, char *output_buffer) {
  * Writes data received from a socket into a file.
  * Returns 0 on success, -1 on failure, or specific error codes.
  */
-int WriteFile(int socket_fd, char *file_token, char *output_buffer) {
+int WriteFile(int socket_fd, char *file_token, char* content,char *output_buffer) {
+    printf("FOuput:%s | ft:%s\n",content,file_token);
     if (file_token == NULL || output_buffer == NULL) {
         fprintf(stderr, "WriteFile: Invalid arguments.\n");
         return -1;
     }
+  
 
-    char write_buffer[MAX_FILE_LENGTH];
-    char sanitized_filename[100];
-    memset(sanitized_filename, 0, sizeof(sanitized_filename));
-    strncpy(sanitized_filename, file_token, sizeof(sanitized_filename) - 1);
-    sanitized_filename[sizeof(sanitized_filename) - 1] = '\0';
 
-    TrieNode *trie_node = GetTrieNode(trie_root, sanitized_filename);
-    if (trie_node == NULL) {
-        fprintf(stderr, "WriteFile: TrieNode for %s not found.\n", sanitized_filename);
-        strncpy(output_buffer, "[404] File not found in trie\n", MAX_COMMAND_LENGTH - 1);
-        output_buffer[MAX_COMMAND_LENGTH - 1] = '\0';
-        return -1;
-    }
 
-    int semaphore_val;
-    sem_getvalue(&trie_node->write_lock, &semaphore_val);
-    if (semaphore_val <= 0) {
-        fprintf(stderr, "WriteFile: File %s is currently being read.\n", sanitized_filename);
-        strncpy(output_buffer, "[301] File is being read. Unable to write at the moment.\n", MAX_COMMAND_LENGTH - 1);
-        output_buffer[MAX_COMMAND_LENGTH - 1] = '\0';
-        return 301;
-    }
-
-    int fd = open(sanitized_filename, O_WRONLY | O_CREAT | O_TRUNC, S_IRUSR | S_IWUSR);
+    int fd = open(file_token, O_WRONLY | O_CREAT | O_APPEND, 0777);
     if (fd == -1) {
-        fprintf(stderr, "WriteFile: Error opening file %s.\n", sanitized_filename);
+        fprintf(stderr, "WriteFile: Error opening file %s.\n", file_token);
         strncpy(output_buffer, "[404] Error opening the file\n", MAX_COMMAND_LENGTH - 1);
         output_buffer[MAX_COMMAND_LENGTH - 1] = '\0';
+        printf("[404]\n");
         return -1;
     }
 
-    // Receive the content to write
-    int received_chunks = receiveChunks(socket_fd, write_buffer);
-    if (received_chunks == -1) {
-        strncpy(output_buffer, "[500] Error receiving data to write\n", MAX_COMMAND_LENGTH - 1);
-        output_buffer[MAX_COMMAND_LENGTH - 1] = '\0';
-        close(fd);
-        return -1;
-    }
-
-    sem_wait(&trie_node->write_lock);
-
-    ssize_t bytes_written = write(fd, write_buffer, strlen(write_buffer));
+    char* _content = strtok(content," ");
+    _content = strtok(NULL," ");
+    _content = strtok(NULL," ");
+    printf("Content_:%s\n",_content);
+    ssize_t bytes_written = write(fd,_content, strlen(_content));
     if (bytes_written == -1) {
-        fprintf(stderr, "WriteFile: Error writing to file %s.\n", sanitized_filename);
+        fprintf(stderr, "WriteFile: Error writing to file %s.\n", file_token);
         strncpy(output_buffer, "[500] Error writing to the file\n", MAX_COMMAND_LENGTH - 1);
+         printf("[500] Error writing to the file\n");
         output_buffer[MAX_COMMAND_LENGTH - 1] = '\0';
-        close(fd);
-        sem_post(&trie_node->write_lock);
         return -1;
     }
 
     strncpy(output_buffer, "Successfully written to file\n", MAX_COMMAND_LENGTH - 1);
     output_buffer[MAX_COMMAND_LENGTH - 1] = '\0';
+    printf("Successfully wrote to file\n");
 
-    sem_post(&trie_node->write_lock);
+  
     close(fd);
     return 0;
 }
@@ -721,6 +696,7 @@ void *client_handler(void *arg)
 
     // Receive the command from the client
     int n = recv(client->sockid, buffer, sizeof(buffer), 0);
+    char* dupbuffer = strdup(buffer);
     if (n == -1)
     {
         perror("recv");
@@ -740,16 +716,6 @@ void *client_handler(void *arg)
     if (operation == NULL)
     {
         strcpy(return_buffer, "Invalid command format.\n");
-        sendChunks(client->sockid, return_buffer);
-        close(client->sockid);
-        free(client);
-        pthread_exit(NULL);
-    }
-
-    if (strcmp(operation, "CHECK") == 0)
-    {
-        // Implement CHECK operation if needed
-        strcpy(return_buffer, "CHECK operation not implemented.\n");
         sendChunks(client->sockid, return_buffer);
         close(client->sockid);
         free(client);
@@ -815,7 +781,7 @@ void *client_handler(void *arg)
         }
         else if (strcmp(operation, "WRITE") == 0)
         {
-            int response = WriteFile(client->sockid, path, return_buffer);
+            int response = WriteFile(client->sockid, path,dupbuffer ,return_buffer);
             if (response == -1)
                 strcpy(return_buffer, "[500] WRITE operation failed.\n");
         }
