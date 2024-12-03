@@ -66,7 +66,6 @@ struct TrieNode
 struct TrieNode *getNode();
 void *ss_handler(void *param);
 void *client_handler(void *param);
-ss_info *search(struct TrieNode *root, char *key);
 void insert(struct TrieNode *root, const char *key, ss_info *ptr);
 struct LRUcache *initLRUcache(int capacity);
 void enqueue(struct LRUcache *queue, char *key, ss_info *value);

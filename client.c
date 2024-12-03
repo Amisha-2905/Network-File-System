@@ -133,6 +133,7 @@ int main() {
             break;
         }
         memset(ss_struct, 0, sizeof(ss_info));
+        send(sock_fd,"Syncying",strlen("Syncying"),0);
         printf("Trying to get SS Info\n");
         // Receive ss_info from server
         bytes_received = recv(sock_fd, ss_struct, sizeof(ss_info), 0);

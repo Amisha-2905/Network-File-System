@@ -16,9 +16,27 @@
 
 extern FILE *logFile;
 const char *termination_signal = "<STOP>";
-
+extern ss_info *primary_servers;
+extern active_storage_count;
 #define LOG_FILE "log.txt"
 #define MAX_LOG_MSG_SIZE 256
+
+ss_info *search(struct TrieNode* node, char *key) {
+    for (int i = 1; i <= active_storage_count; i++) {
+        ss_info *server = &primary_servers[i];
+       
+        for (int j = 0; j <= server->total_paths; j++) {
+            
+            if (strncmp(server->accesible_paths[j], key,strlen(key)) == 0) {
+                 printf("Found @ |%s|,|%d|@index:%d\n",server->ip_addr,server->port_no_client,i);
+                return server; // Key found in accessible paths of this server
+            }
+        }
+    }
+    printf("\033[1;31mNo Server Found]\n\033[0m");
+    return NULL; // Key not found in any server
+}
+
 int logMessage(const char *message, int socket, int status)
 {
     struct sockaddr_in addr;
@@ -557,7 +575,7 @@ int execute(char *command_input, int *client_socket, struct LRUcache *cache_queu
 
       
             ss_info* server_struct = search(trie_root_node, additional_param);
-            printf("GOT %s %d\n",server_struct->ip_addr,server_struct->nm_port);
+          
         
 
         if (server_struct == NULL)
@@ -570,14 +588,15 @@ int execute(char *command_input, int *client_socket, struct LRUcache *cache_queu
             }
             return 404;
         }
-
+       
         int success_flag = 0;
         if (send(*client_socket, &success_flag, sizeof(int), 0) == -1)
         {
             perror("execute: Failed to send success flag");
             return -1;
         }
-        printf("Sending SS IP: %s Port: %s\n",server_struct->ip_addr,server_struct->port_no_client);
+        
+        
         char success_response[MAX_COMMAND_LENGTH];
         strncpy(success_response, "[200] SS details retrieved\n", sizeof(success_response) - 1);
         success_response[sizeof(success_response) - 1] = '\0';
@@ -587,8 +606,9 @@ int execute(char *command_input, int *client_socket, struct LRUcache *cache_queu
             fprintf(stderr, "execute: Failed to send success response to client.\n");
             return -1;
         }
+        char buffer2[1024];
       
-
+        recv(*client_socket,buffer2,1024,0); //To sync the structs
         if (send(*client_socket, server_struct, sizeof(ss_info), 0) == -1)
         {
             perror("execute: Failed to send ss_info to client");

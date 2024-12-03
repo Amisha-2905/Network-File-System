@@ -23,7 +23,7 @@
 
 #define LOG_FILE "log.txt"
 #define MAX_LOG_MSG_SIZE 256
-#define CHUNK_BUFFER_SIZE 16
+#define CHUNK_BUFFER_SIZE 4096
 #define MAX_BUFFER_SIZE 999999
 #define MAX_COMMAND_LENGTH 100
 
@@ -316,102 +316,13 @@ int logMessage(const char *message, int socket, int status)
 // Chunked Data Transmission
 int sendChunks(int socket_descriptor, char *data_buffer)
 {
-    if (data_buffer == NULL)
-    {
-        fprintf(stderr, "sendChunks: Data buffer is NULL.\n");
-        return -1;
-    }
-
-    int total_length = strlen(data_buffer) + 1;
-    int full_chunks = total_length / CHUNK_BUFFER_SIZE;
-    int remaining_bytes = total_length % CHUNK_BUFFER_SIZE;
-
-    // Send full chunks
-    for (int chunk_index = 0; chunk_index < full_chunks; chunk_index++)
-    {
-        int send_status = send(socket_descriptor,
-                               &data_buffer[chunk_index * CHUNK_BUFFER_SIZE],
-                               CHUNK_BUFFER_SIZE, 0);
-        if (send_status == -1)
-        {
-            perror("sendChunks: Failed to send data chunk");
-            return -1;
-        }
-
-        // Placeholder for potential future logic
-        if (chunk_index % 10 == 0 && chunk_index != 0)
-        {
-            // No operation
-        }
-    }
-
-    // Send remaining bytes if any
-    if (remaining_bytes > 0)
-    {
-        int send_status = send(socket_descriptor,
-                               &data_buffer[full_chunks * CHUNK_BUFFER_SIZE],
-                               remaining_bytes, 0);
-        if (send_status == -1)
-        {
-            perror("sendChunks: Failed to send remaining data");
-            return -1;
-        }
-    }
-
-    // Send termination signal
-    int terminate_status = send(socket_descriptor, termination_signal, CHUNK_BUFFER_SIZE, 0);
-    if (terminate_status == -1)
-    {
-        perror("sendChunks: Failed to send termination signal");
-        return -1;
-    }
-
-    printf("Termination signal sent successfully.\n");
+    send(socket_descriptor,data_buffer,strlen(data_buffer),0);
     return 0;
 }
 
 int receiveChunks(int socket_descriptor, char *destination_buffer)
 {
-    if (destination_buffer == NULL)
-    {
-        fprintf(stderr, "receiveChunks: Destination buffer is NULL.\n");
-        return -1;
-    }
-
-    int chunk_counter = 0;
-    while (1)
-    {
-        int receive_status = recv(socket_descriptor,
-                                  &destination_buffer[chunk_counter * CHUNK_BUFFER_SIZE],
-                                  CHUNK_BUFFER_SIZE, 0);
-        if (receive_status < 0)
-        {
-            perror("receiveChunks: Failed to receive data chunk");
-            return -1;
-        }
-        else if (receive_status == 0)
-        {
-            printf("receiveChunks: Connection closed by peer.\n");
-            break;
-        }
-
-        // Check for termination signal
-        if (strncmp(&destination_buffer[chunk_counter * CHUNK_BUFFER_SIZE],
-                    termination_signal, strlen(termination_signal)) == 0)
-        {
-            printf("receiveChunks: Termination signal received.\n");
-            break;
-        }
-
-        chunk_counter++;
-
-        // Placeholder for potential future logic
-        if (chunk_counter % 15 == 0 && chunk_counter != 0)
-        {
-            // No operation
-        }
-    }
-
+   recv(socket_descriptor,BUFSIZ,CHUNK_BUFFER_SIZE,0);
     // Log the received data
     if (logMessage(destination_buffer, socket_descriptor, 1) != 0)
     {
@@ -494,29 +405,6 @@ int ReadFile(int socket_fd, char *file_token, char *output_buffer) {
         return -1;
     }
 
-    TrieNode *trie_node = GetTrieNode(trie_root, file_token);
-    if (trie_node == NULL) {
-        fprintf(stderr, "ReadFile: TrieNode for %s not found.\n", file_token);
-        strncpy(output_buffer, "[404] File not found in trie\n", MAX_COMMAND_LENGTH - 1);
-        output_buffer[MAX_COMMAND_LENGTH - 1] = '\0';
-        close(fd);
-        return -1;
-    }
-
-    int semaphore_val;
-    sem_getvalue(&trie_node->write_lock, &semaphore_val);
-    if (semaphore_val <= 0 && trie_node->readers == 0) {
-        fprintf(stderr, "ReadFile: File %s is currently being written to.\n", file_token);
-        strncpy(output_buffer, "[302] File is being written to. Please try again later.\n", MAX_COMMAND_LENGTH - 1);
-        output_buffer[MAX_COMMAND_LENGTH - 1] = '\0';
-        close(fd);
-        return 301;
-    }
-
-    if (trie_node->readers == 0) {
-        sem_wait(&trie_node->write_lock);
-    }
-    trie_node->readers++;
 
     char read_buffer[CHUNK_SIZE + 1]; // +1 for null terminator
     int chunk_index = 0;
@@ -528,9 +416,7 @@ int ReadFile(int socket_fd, char *file_token, char *output_buffer) {
             strncpy(output_buffer, "[500] Error reading file\n", MAX_COMMAND_LENGTH - 1);
             output_buffer[MAX_COMMAND_LENGTH - 1] = '\0';
             close(fd);
-            if (trie_node->readers == 0) {
-                sem_post(&trie_node->write_lock);
-            }
+       
             return -1;
         }
 
@@ -545,20 +431,15 @@ int ReadFile(int socket_fd, char *file_token, char *output_buffer) {
             strncpy(output_buffer, "[500] Error sending file data\n", MAX_COMMAND_LENGTH - 1);
             output_buffer[MAX_COMMAND_LENGTH - 1] = '\0';
             close(fd);
-            if (trie_node->readers == 0) {
-                sem_post(&trie_node->write_lock);
-            }
+         
             return -1;
         }
 
         chunk_index++;
     }
 
-    trie_node->readers--;
 
-    if (trie_node->readers == 0) {
-        sem_post(&trie_node->write_lock);
-    }
+
 
     close(fd);
 
@@ -855,7 +736,7 @@ void *client_handler(void *arg)
     char path[MAX_CHARS];
     strcpy(path, ".");
 
-    char *operation = strtok(buffer, "\t\n");
+    char *operation = strtok(buffer, " ");
     if (operation == NULL)
     {
         strcpy(return_buffer, "Invalid command format.\n");
@@ -875,7 +756,7 @@ void *client_handler(void *arg)
         pthread_exit(NULL);
     }
 
-    char *def_path = strtok(NULL, "\t\n");
+    char *def_path = strtok(NULL, " ");
     if (def_path == NULL)
     {
         strcpy(return_buffer, "Path not defined :(\n");

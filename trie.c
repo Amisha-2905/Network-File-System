@@ -88,7 +88,7 @@ void insert(struct TrieNode *root, const char *key, ss_info *ptr) {
 
     struct TrieNode *current = root;
     size_t key_length = strlen(key);
-
+   
     for (size_t level = 0; level < key_length; level++) {
         unsigned char current_char = (unsigned char)key[level];
         // Ensure the character is within the valid range
@@ -112,66 +112,7 @@ void insert(struct TrieNode *root, const char *key, ss_info *ptr) {
 
     // Mark the end of the word and assign the ss_info pointer
     current->isEndOfWord = true;
-    current->ss_ptr = ptr;
+    current->ss_ptr=ptr;
+
     printTrieWrapper(root);
 }
-
-/**
- * Searches for a key in the Trie and returns the associated ss_info pointer.
- * Returns NULL if the key is not found.
- */
-ss_info *search(struct TrieNode *root, char *key) {
-    printf("Searching tries\n");
-    printTrieWrapper(root);
-    if (root == NULL || key == NULL) {
-        fprintf(stderr, "search: Invalid arguments provided.\n");
-        return NULL;
-    }
-
-    struct TrieNode *current = root;
-    size_t key_length = strlen(key);
-    bool has_dot = strchr(key, '.') ? true : false;
-    int slash_count = countCharacter(key, '/');
-
-    // If the key starts with a dot, skip it
-    if (key[0] == '.') {
-        key++;
-        key_length--;
-    }
-
-    for (size_t level = 0; level < key_length; level++) {
-        unsigned char current_char = (unsigned char)key[level];
-
-        // If the character is a slash, handle accordingly
-        if (current_char == '/') {
-            if (slash_count == 1 && has_dot) {
-                if (current->children[current_char] && current->children[current_char]->ss_ptr) {
-                    printf("Found 0: Return %s\n",current->children[current_char]->ss_ptr);
-                    return current->children[current_char]->ss_ptr;
-                } else {
-                    printf("Found 1: Return NULL\n");
-                    return NULL;
-                }
-            }
-            slash_count--;
-        }
-
-        // If the child node doesn't exist, the key isn't present
-        if (current_char >= ALPHABET_SIZE || current->children[current_char] == NULL) {
-            printf("Found 2: Return NULL\n");
-            return NULL;
-        }
-
-        // Move to the child node
-        current = current->children[current_char];
-    }
-
-    // If the end of the key is reached, return the associated ss_info pointer
-    if (current->isEndOfWord) {
-        printf("Found 3: %s\n",current->ss_ptr->nm_port);
-        return current->ss_ptr;
-    }
-
-    return NULL;
-}
-

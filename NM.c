@@ -36,8 +36,8 @@ FILE *log_file_ptr;
 int active_storage_count = 0;
 int active_client_count = 0;
 
-struct TrieNode *trie_root_node;
 
+struct TrieNode *trie_root_node;
 void get_ip_address()
 {
     struct ifaddrs *ifaddr, *ifa;
@@ -292,6 +292,7 @@ void *storage_server_handler(void *param) {
 
     // Add the received storage server to the global array
     primary_servers[active_storage_count] = received_info;
+    printf("\033[1;32m SS Data: %s %d %d %d\n\033[0m",received_info.ip_addr,received_info.nm_port,received_info.port_no_client);
     active_storage_count++;
 
     // Close the storage server socket
@@ -376,8 +377,13 @@ void *storage_server_handler(void *param) {
         strncpy(path_buffer, primary_servers[active_storage_count - 1].accesible_paths[path_idx], sizeof(path_buffer) - 1);
         path_buffer[sizeof(path_buffer) - 1] = '\0';
         printf("Inserting accessible path: %s\n", path_buffer);
-        insert(trie_root_node, path_buffer, &primary_servers[active_storage_count - 1]);
-
+        ss_info * dupss = malloc(dupss);
+        ss_info ss = primary_servers[active_storage_count - 1];
+        strcpy(dupss->ip_addr,ss.ip_addr);
+        dupss->port_no_client=ss.port_no_client;
+        dupss->port_no_ns=ss.port_no_ns;
+        insert(trie_root_node, path_buffer, dupss);
+       
         if (backup_found == MAX_BACKUPS) {
             // Handle backup paths
             active_storage_count++;
