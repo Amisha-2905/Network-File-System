@@ -1,8 +1,0 @@
-[127.0.0.1:52488] WRITE -a helloworldgeorge - Status: 0
-[127.0.0.1:52488] WRITE /dir1/a.txt hellowroldgeorge - Status: 1
-[127.0.0.1:52488] WRITE /dir1/a.txt helloplswork - Status: 1
-[127.0.0.1:52488] WRITE /dir1/a.txt hellowlrd - Status: 1
-[127.0.0.1:52488] WRITE /dir1/a.txt grisgreat - Status: 1
-[127.0.0.1:49746] WRITE /dir1/a.txt gristhenest - Status: 1
-[127.0.0.1:49746] READ /dir1/a.txt - Status: 1
-[127.0.0.1:49746] WRITE /dir1/a.txt testingiam - Status: 1
