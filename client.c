@@ -1,23 +1,59 @@
 #include "network.h"
+#include <sys/time.h>
+#include <errno.h>
+
+// Configures a strict 2-second timeout window on the socket descriptor [cite: 321, 327]
+int configure_socket_timeout(int sock_fd)
+{
+    struct timeval timeout;
+    timeout.tv_sec = 2;
+    timeout.tv_usec = 0;
+
+    if (setsockopt(sock_fd, SOL_SOCKET, SO_RCVTIMEO, &timeout, sizeof(timeout)) < 0)
+    {
+        LOG_ERROR("Failed to set socket receive timeout configuration option.");
+        return -1;
+    }
+    return 0;
+}
 
 void handle_read_stream(const char *nm_ip, int nm_port, const char *path, int is_stream)
 {
     Packet lookup_req;
     memset(&lookup_req, 0, sizeof(Packet));
     lookup_req.msg_type = MSG_LOOKUP;
-    lookup_req.error_code = 0; // Signals standard READ lookup intent
+    lookup_req.error_code = 0;
     strncpy(lookup_req.path, path, MAX_PATH_LEN);
 
     LOG_INFO("Querying Naming Server at %s:%d for path route: %s", nm_ip, nm_port, path);
     int nm_fd = connect_to_server(nm_ip, nm_port);
     if (nm_fd < 0)
+        return;
+
+    configure_socket_timeout(nm_fd); // [cite: 327, 329]
+    send(nm_fd, &lookup_req, sizeof(Packet), 0);
+
+    // 1. Await Initial ACK from Naming Server [cite: 300, 326, 330]
+    Packet initial_ack;
+    ssize_t bytes = recv(nm_fd, &initial_ack, sizeof(Packet), 0);
+    if (bytes <= 0)
     {
+        if (errno == EAGAIN || errno == EWOULDBLOCK)
+        {
+            LOG_ERROR("Naming Server request timed out! (Initial ACK not received within 2s deadline)");
+        }
+        else
+        {
+            LOG_ERROR("Network link dropped while waiting for Initial ACK.");
+        }
+        close(nm_fd);
         return;
     }
+    LOG_INFO("Initial ACK received from Naming Server. Request queued."); // [cite: 335]
 
-    send(nm_fd, &lookup_req, sizeof(Packet), 0);
+    // 2. Await Final Resolution Packet [cite: 300, 330]
     Packet lookup_ack;
-    ssize_t bytes = recv(nm_fd, &lookup_ack, sizeof(Packet), 0);
+    bytes = recv(nm_fd, &lookup_ack, sizeof(Packet), 0);
     close(nm_fd);
 
     if (bytes <= 0 || lookup_ack.msg_type == MSG_ERROR)
@@ -92,12 +128,33 @@ void handle_nm_mediated_op(const char *nm_ip, int nm_port, MsgType type, const c
     if (nm_fd < 0)
         return;
 
+    configure_socket_timeout(nm_fd);
     send(nm_fd, &req, sizeof(Packet), 0);
+
+    // 1. Await Initial ACK [cite: 300, 326, 330]
+    Packet initial_ack;
+    ssize_t bytes = recv(nm_fd, &initial_ack, sizeof(Packet), 0);
+    if (bytes <= 0)
+    {
+        if (errno == EAGAIN || errno == EWOULDBLOCK)
+        {
+            LOG_ERROR("Naming Server request timed out! (Initial ACK not received within 2s deadline)");
+        }
+        else
+        {
+            LOG_ERROR("Connection link broken during Initial ACK handshake phase.");
+        }
+        close(nm_fd);
+        return;
+    }
+    LOG_INFO("Initial ACK received from Naming Server. Processing operation."); // [cite: 335]
+
+    // 2. Await Final Structural ACK [cite: 300, 330]
     Packet ack;
-    recv(nm_fd, &ack, sizeof(Packet), 0);
+    bytes = recv(nm_fd, &ack, sizeof(Packet), 0);
     close(nm_fd);
 
-    if (ack.error_code == SUCCESS)
+    if (bytes > 0 && ack.msg_type != MSG_ERROR && ack.error_code == SUCCESS)
     {
         LOG_SUCCESS("Command execution confirmed: %s", ack.payload.text);
     }
@@ -145,21 +202,42 @@ int main(int argc, char *argv[])
     {
         if (argc < 6)
         {
-            LOG_ERROR("Usage error: WRITE command requires context text data payload string input.");
+            LOG_ERROR("Usage error: WRITE command requires string text payload context data input.");
             exit(EXIT_FAILURE);
         }
 
         Packet lookup_req;
         memset(&lookup_req, 0, sizeof(Packet));
         lookup_req.msg_type = MSG_LOOKUP;
-        lookup_req.error_code = 1; // Explicit write configuration flag profile parameter
+        lookup_req.error_code = 1; // Explicit write configuration flag [cite: 163]
         strncpy(lookup_req.path, path, MAX_PATH_LEN);
 
+        LOG_INFO("Querying Naming Server at %s:%d for WRITE path route: %s", nm_ip, nm_port, path);
         int nm_fd = connect_to_server(nm_ip, nm_port);
         if (nm_fd < 0)
             exit(EXIT_FAILURE);
+
+        configure_socket_timeout(nm_fd); // [cite: 327, 329]
         send(nm_fd, &lookup_req, sizeof(Packet), 0);
 
+        // 1. Await Initial ACK
+        Packet initial_ack;
+        if (recv(nm_fd, &initial_ack, sizeof(Packet), 0) <= 0)
+        {
+            if (errno == EAGAIN || errno == EWOULDBLOCK)
+            {
+                LOG_ERROR("Naming Server write lookup request timed out! (Initial ACK not received)");
+            }
+            else
+            {
+                LOG_ERROR("Timeout or disconnection encountered on initial WRITE ACK check.");
+            }
+            close(nm_fd);
+            exit(EXIT_FAILURE);
+        }
+        LOG_INFO("Initial ACK received from Naming Server. Write request queued."); // RESTORED LOG [cite: 335]
+
+        // 2. Await Final Resolution Packet [cite: 300, 330]
         Packet lookup_ack;
         recv(nm_fd, &lookup_ack, sizeof(Packet), 0);
         close(nm_fd);
@@ -173,6 +251,7 @@ int main(int argc, char *argv[])
         char ss_ip[IP_LEN];
         int ss_port;
         sscanf(lookup_ack.payload.text, "%[^:]:%d", ss_ip, &ss_port);
+        LOG_SUCCESS("Write path resolved to Storage Server at %s:%d", ss_ip, ss_port);
 
         int ss_fd = connect_to_server(ss_ip, ss_port);
         if (ss_fd < 0)
@@ -192,7 +271,7 @@ int main(int argc, char *argv[])
 
         LOG_SUCCESS("Server Response: %s", write_ack.payload.text);
 
-        // Notify Naming Server to clear write lock session status
+        // Notify Naming Server to clear write lock session status [cite: 168]
         int nm_unlock_fd = connect_to_server(nm_ip, nm_port);
         if (nm_unlock_fd >= 0)
         {
@@ -208,6 +287,5 @@ int main(int argc, char *argv[])
     {
         LOG_ERROR("Unrecognized transaction operation command string entered: %s", cmd);
     }
-
     return 0;
 }

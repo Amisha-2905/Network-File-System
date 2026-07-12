@@ -2,7 +2,7 @@
 #include "trie.h"
 #include "lru_cache.h"
 #include <pthread.h>
-#include <sys/time.h> // Benchmark analytics collection structures
+#include <sys/time.h>
 
 typedef struct
 {
@@ -19,9 +19,17 @@ RegisteredSS ss_table[10];
 int registered_ss_count = 0;
 pthread_mutex_t table_mutex = PTHREAD_MUTEX_INITIALIZER;
 
-// Global Search Optimizations Architecture Instances
 TrieNode *trie_root;
 LRUCache *route_cache;
+
+void send_initial_ack(int client_fd)
+{
+    Packet init_ack;
+    memset(&init_ack, 0, sizeof(Packet));
+    init_ack.msg_type = MSG_ACK;
+    init_ack.error_code = SUCCESS;
+    send(client_fd, &init_ack, sizeof(Packet), 0);
+}
 
 void *handle_node_connection(void *arg)
 {
@@ -33,6 +41,12 @@ void *handle_node_connection(void *arg)
     {
         close(client_fd);
         return NULL;
+    }
+
+    // Spec 3.2: Issue immediate initial acknowledgment for incoming client requests
+    if (inbound.msg_type != MSG_REGISTER && inbound.msg_type != MSG_ACK)
+    {
+        send_initial_ack(client_fd);
     }
 
     if (inbound.msg_type == MSG_REGISTER)
@@ -53,7 +67,6 @@ void *handle_node_connection(void *arg)
         int target_ss_id = -1;
         if (found_idx != -1)
         {
-            // FIX: Re-seed paths into Trie structure upon server reconnects/re-registrations
             ss_table[found_idx].is_online = 1;
             target_ss_id = found_idx;
             ss_table[found_idx].path_count = payload->path_count;
@@ -62,7 +75,7 @@ void *handle_node_connection(void *arg)
                 strncpy(ss_table[found_idx].paths[i], payload->paths[i], MAX_PATH_LEN);
                 trie_insert(trie_root, payload->paths[i], target_ss_id);
             }
-            LOG_SUCCESS("Storage Server at port %d recovered online and Trie paths re-seeded successfully!", ss_table[found_idx].client_port);
+            LOG_SUCCESS("Storage Server at port %d recovered back online and Trie paths re-seeded successfully!", ss_table[found_idx].client_port);
         }
         else if (registered_ss_count < 10)
         {
@@ -93,28 +106,12 @@ void *handle_node_connection(void *arg)
     else if (inbound.msg_type == MSG_LOOKUP)
     {
         pthread_mutex_lock(&table_mutex);
-
         struct timeval start_time, end_time;
 
-        // 1. Check LRU Cache layer
-        gettimeofday(&start_time, NULL);
         int matched_ss = cache_get(route_cache, inbound.path);
-        gettimeofday(&end_time, NULL);
-        long cache_time = (end_time.tv_sec - start_time.tv_sec) * 1000000 + (end_time.tv_usec - start_time.tv_usec);
-
-        if (matched_ss != -1)
+        if (matched_ss == -1)
         {
-            LOG_INFO("[BENCHMARK] Cache HIT! Path resolved in %ld microseconds.", cache_time);
-        }
-        else
-        {
-            // 2. Cache Miss: Query Trie structure
-            gettimeofday(&start_time, NULL);
             matched_ss = trie_search(trie_root, inbound.path);
-            gettimeofday(&end_time, NULL);
-            long trie_time = (end_time.tv_sec - start_time.tv_sec) * 1000000 + (end_time.tv_usec - start_time.tv_usec);
-
-            LOG_INFO("[BENCHMARK] Cache MISS. Trie indexed resolve completed in %ld microseconds.", trie_time);
             if (matched_ss != -1)
             {
                 cache_put(route_cache, inbound.path, matched_ss);
@@ -136,39 +133,36 @@ void *handle_node_connection(void *arg)
                 }
             }
 
-            // FIX: Guard against missing path array synchronization index issues
             if (target_path_idx == -1)
             {
                 out.msg_type = MSG_ERROR;
-                out.error_code = ERR_FILE_NOT_FOUND;
-                LOG_ERROR("Trie matched but flat array index out of sync for path: %s", inbound.path);
+                out.error_code = ERR_INVALID_PATH; // Explicit Day 5 error mapping
+                LOG_ERROR("Trie matched but directory struct out of sync for: %s", inbound.path);
             }
             else
             {
-                // Exclusivity Checks
                 if (inbound.error_code == 1)
-                { // WRITE intention requested
+                { // WRITE requested
                     if (ss_table[matched_ss].is_being_written[target_path_idx])
                     {
                         out.msg_type = MSG_ERROR;
-                        out.error_code = ERR_FILE_BUSY_WRITING;
-                        LOG_ERROR("Rejected WRITE lookup. Path busy: %s", inbound.path);
+                        out.error_code = ERR_FILE_BUSY_WRITING; // Explicit Exclusivity Error Code [cite: 302, 304]
+                        LOG_ERROR("Rejected WRITE lookup. Path locked: %s", inbound.path);
                     }
                     else
                     {
                         ss_table[matched_ss].is_being_written[target_path_idx] = 1;
                         out.msg_type = MSG_LOOKUP_ACK;
                         sprintf(out.payload.text, "%s:%d", ss_table[matched_ss].ip, ss_table[matched_ss].client_port);
-                        LOG_SUCCESS("WRITE entry routing validated for Storage Server %d", matched_ss + 1);
                     }
                 }
                 else
-                { // Standard READ path intent
+                { // READ requested
                     if (ss_table[matched_ss].is_being_written[target_path_idx])
                     {
                         out.msg_type = MSG_ERROR;
-                        out.error_code = ERR_FILE_BUSY_WRITING;
-                        LOG_ERROR("Rejected READ lookup. Path modification in progress: %s", inbound.path);
+                        out.error_code = ERR_FILE_BUSY_WRITING; // Explicit Exclusivity Error Code [cite: 302, 304]
+                        LOG_ERROR("Rejected READ lookup. Path currently busy: %s", inbound.path);
                     }
                     else
                     {
@@ -181,7 +175,7 @@ void *handle_node_connection(void *arg)
         else
         {
             out.msg_type = MSG_ERROR;
-            out.error_code = ERR_FILE_NOT_FOUND;
+            out.error_code = ERR_FILE_NOT_FOUND; // Explicit missing error mapping
             LOG_ERROR("Path resolution lookup returned missing: %s", inbound.path);
         }
         pthread_mutex_unlock(&table_mutex);
@@ -196,7 +190,7 @@ void *handle_node_connection(void *arg)
         if (registered_ss_count == 0)
         {
             relay_ack.msg_type = MSG_ERROR;
-            relay_ack.error_code = ERR_SS_UNREACHABLE;
+            relay_ack.error_code = ERR_SS_UNREACHABLE; // Explicit unreachable code mapping
             pthread_mutex_unlock(&table_mutex);
             send(client_fd, &relay_ack, sizeof(Packet), 0);
             close(client_fd);
@@ -209,6 +203,15 @@ void *handle_node_connection(void *arg)
             int lookup_ss = trie_search(trie_root, inbound.path);
             if (lookup_ss != -1)
                 target_ss = lookup_ss;
+            else
+            {
+                relay_ack.msg_type = MSG_ERROR;
+                relay_ack.error_code = ERR_FILE_NOT_FOUND;
+                pthread_mutex_unlock(&table_mutex);
+                send(client_fd, &relay_ack, sizeof(Packet), 0);
+                close(client_fd);
+                return NULL;
+            }
         }
 
         int ss_sock = connect_to_server(ss_table[target_ss].ip, ss_table[target_ss].nm_port);
@@ -258,7 +261,6 @@ void *handle_node_connection(void *arg)
             relay_ack.msg_type = MSG_ERROR;
             relay_ack.error_code = ERR_SS_UNREACHABLE;
         }
-    publicKey:
         pthread_mutex_unlock(&table_mutex);
         send(client_fd, &relay_ack, sizeof(Packet), 0);
     }
@@ -273,7 +275,7 @@ void *handle_node_connection(void *arg)
                 if (strcmp(ss_table[matched_ss].paths[j], inbound.path) == 0)
                 {
                     ss_table[matched_ss].is_being_written[j] = 0;
-                    LOG_SUCCESS("Cleared transaction modifications lock for path: %s", inbound.path);
+                    LOG_SUCCESS("Cleared exclusive WRITE lock on path: %s", inbound.path);
                     break;
                 }
             }
@@ -296,16 +298,15 @@ int main(int argc, char *argv[])
     char local_ip[IP_LEN];
     get_local_ip(local_ip, sizeof(local_ip));
 
-    // Allocate optimization layers
     trie_root = create_trie_node("ROOT");
     route_cache = create_cache();
 
-    LOG_INFO("Initializing Optimized Naming Server Core Engine...");
+    LOG_INFO("Initializing Async Non-Blocking Naming Server Core...");
     int s_fd = create_listening_socket(port);
     if (s_fd < 0)
         exit(EXIT_FAILURE);
 
-    LOG_SUCCESS("Naming Server online [IP: %s, Port: %d] with Trie Search & LRU Cache active...", local_ip, port);
+    LOG_SUCCESS("Naming Server online [IP: %s, Port: %d] (Day 5 Non-Blocking ACKs Active)...", local_ip, port);
     while (1)
     {
         struct sockaddr_in addr;
