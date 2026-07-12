@@ -1,1 +1,1 @@
-Distributed File System Core Engine is fully operational!
+New text content written synchronously over the wire.

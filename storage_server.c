@@ -1,5 +1,6 @@
 #include "network.h"
 #include <pthread.h>
+#include <sys/stat.h>
 
 int my_client_port;
 
@@ -15,17 +16,18 @@ void *handle_client_requests(void *arg)
         return NULL;
     }
 
+    Packet reply;
+    memset(&reply, 0, sizeof(Packet));
+
     if (req.msg_type == MSG_READ || req.msg_type == MSG_STREAM)
     {
         LOG_INFO("Processing data retrieval request for file: %s", req.path);
         FILE *fp = fopen(req.path, "rb");
         if (!fp)
         {
-            Packet err;
-            memset(&err, 0, sizeof(Packet));
-            err.msg_type = MSG_ERROR;
-            err.error_code = ERR_FILE_NOT_FOUND;
-            send(client_fd, &err, sizeof(Packet), 0);
+            reply.msg_type = MSG_ERROR;
+            reply.error_code = ERR_FILE_NOT_FOUND;
+            send(client_fd, &reply, sizeof(Packet), 0);
             close(client_fd);
             return NULL;
         }
@@ -40,20 +42,39 @@ void *handle_client_requests(void *arg)
             {
                 send(client_fd, &block, sizeof(Packet), 0);
             }
-            // Add a small structural delay during audio streams to preserve standard pacing
             if (req.msg_type == MSG_STREAM)
-                usleep(15000);
+                usleep(15000); // Dynamic audio stream buffer delay
         }
         fclose(fp);
 
-        // Send a terminating confirmation ACK to close the stream gracefully
-        Packet stop_ack;
-        memset(&stop_ack, 0, sizeof(Packet));
-        stop_ack.msg_type = MSG_ACK;
-        stop_ack.error_code = SUCCESS;
-        send(client_fd, &stop_ack, sizeof(Packet), 0);
+        reply.msg_type = MSG_ACK;
+        reply.error_code = SUCCESS;
+        send(client_fd, &reply, sizeof(Packet), 0);
         LOG_SUCCESS("Data streaming for file [%s] completed successfully.", req.path);
     }
+    else if (req.msg_type == MSG_WRITE)
+    {
+        LOG_INFO("Executing baseline synchronous WRITE operation on file: %s", req.path);
+        FILE *fp = fopen(req.path, "wb");
+        if (fp)
+        {
+            size_t written = fwrite(req.payload.text, 1, req.data_size, fp);
+            fclose(fp);
+
+            reply.msg_type = MSG_ACK;
+            reply.error_code = SUCCESS;
+            sprintf(reply.payload.text, "Successfully wrote %zu bytes synchronously to storage disk.", written);
+            LOG_SUCCESS("Synchronous write completed for path: %s", req.path);
+        }
+        else
+        {
+            reply.msg_type = MSG_ERROR;
+            reply.error_code = ERR_PERMISSION_DENIED;
+            LOG_ERROR("Write operation denied permission on path: %s", req.path);
+        }
+        send(client_fd, &reply, sizeof(Packet), 0);
+    }
+
     close(client_fd);
     return NULL;
 }
@@ -98,12 +119,10 @@ int main(int argc, char *argv[])
     char local_ip[IP_LEN];
     get_local_ip(local_ip, sizeof(local_ip));
 
-    // Spin up an independent parallel thread loop targeting Client interaction streams
     pthread_t client_thread;
     pthread_create(&client_thread, NULL, client_listener_loop, NULL);
     pthread_detach(client_thread);
 
-    // Register our details with the Naming Server
     Packet reg;
     memset(&reg, 0, sizeof(Packet));
     reg.msg_type = MSG_REGISTER;
@@ -128,7 +147,6 @@ int main(int argc, char *argv[])
         LOG_SUCCESS("Registration confirmation complete: %s", ack.payload.text);
     }
 
-    // Process administrative tasks on our NM-facing port loop
     int nm_listen_fd = create_listening_socket(my_nm_port);
     while (1)
     {
@@ -170,6 +188,23 @@ int main(int argc, char *argv[])
             else
             {
                 reply.error_code = ERR_FILE_NOT_FOUND;
+            }
+        }
+        else if (task.msg_type == MSG_INFO)
+        {
+            struct stat st;
+            if (stat(task.path, &st) == 0)
+            {
+                reply.error_code = SUCCESS;
+                sprintf(reply.payload.text, "Size: %ld bytes | Perms: %o | Modified: %ld",
+                        (long)st.st_size, st.st_mode & 0777, (long)st.st_mtime);
+                LOG_SUCCESS("Retrieved METADATA metrics for: %s", task.path);
+            }
+            else
+            {
+                reply.msg_type = MSG_ERROR;
+                reply.error_code = ERR_FILE_NOT_FOUND;
+                LOG_ERROR("Failed to stat target file: %s", task.path);
             }
         }
         send(nm_task_fd, &reply, sizeof(Packet), 0);
