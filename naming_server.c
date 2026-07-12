@@ -202,7 +202,9 @@ void *handle_node_connection(void *arg)
         {
             int lookup_ss = trie_search(trie_root, inbound.path);
             if (lookup_ss != -1)
+            {
                 target_ss = lookup_ss;
+            }
             else
             {
                 relay_ack.msg_type = MSG_ERROR;
@@ -214,15 +216,22 @@ void *handle_node_connection(void *arg)
             }
         }
 
-        int ss_sock = connect_to_server(ss_table[target_ss].ip, ss_table[target_ss].nm_port);
+        char target_ip[IP_LEN];
+        int target_port = ss_table[target_ss].nm_port;
+        strncpy(target_ip, ss_table[target_ss].ip, IP_LEN);
+
+        pthread_mutex_unlock(&table_mutex);
+
+        int ss_sock = connect_to_server(target_ip, target_port);
         if (ss_sock >= 0)
         {
             send(ss_sock, &inbound, sizeof(Packet), 0);
             recv(ss_sock, &relay_ack, sizeof(Packet), 0);
             close(ss_sock);
 
-            if (relay_ack.error_code == SUCCESS)
+            if (relay_ack.error_code == SUCCESS && (inbound.msg_type == MSG_CREATE || inbound.msg_type == MSG_DELETE))
             {
+                pthread_mutex_lock(&table_mutex);
                 if (inbound.msg_type == MSG_CREATE)
                 {
                     int p_idx = ss_table[target_ss].path_count;
@@ -254,6 +263,7 @@ void *handle_node_connection(void *arg)
                     trie_delete_path(trie_root, inbound.path);
                     cache_invalidate(route_cache, inbound.path);
                 }
+                pthread_mutex_unlock(&table_mutex); // Unlock after structural changes
             }
         }
         else
@@ -261,7 +271,8 @@ void *handle_node_connection(void *arg)
             relay_ack.msg_type = MSG_ERROR;
             relay_ack.error_code = ERR_SS_UNREACHABLE;
         }
-        pthread_mutex_unlock(&table_mutex);
+
+        // Send final ACK back to client (no lock needed here)
         send(client_fd, &relay_ack, sizeof(Packet), 0);
     }
     else if (inbound.msg_type == MSG_ACK)
