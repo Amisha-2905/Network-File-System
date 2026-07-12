@@ -1,1 +1,0 @@
-New text content written synchronously over the wire.

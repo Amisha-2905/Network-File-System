@@ -1,7 +1,9 @@
 #include "network.h"
+#include "trie.h"
+#include "lru_cache.h"
 #include <pthread.h>
+#include <sys/time.h> // Benchmark analytics collection structures
 
-// Thread-safe storage structure for tracking registered Storage Servers
 typedef struct
 {
     char ip[IP_LEN];
@@ -10,12 +12,16 @@ typedef struct
     int path_count;
     char paths[MAX_PATHS][MAX_PATH_LEN];
     int is_online;
-    int is_being_written[MAX_PATHS]; // Track per-path write exclusivity
+    int is_being_written[MAX_PATHS];
 } RegisteredSS;
 
 RegisteredSS ss_table[10];
 int registered_ss_count = 0;
 pthread_mutex_t table_mutex = PTHREAD_MUTEX_INITIALIZER;
+
+// Global Search Optimizations Architecture Instances
+TrieNode *trie_root;
+LRUCache *route_cache;
 
 void *handle_node_connection(void *arg)
 {
@@ -44,94 +50,131 @@ void *handle_node_connection(void *arg)
             }
         }
 
-        RegisteredSS *target = NULL;
+        int target_ss_id = -1;
         if (found_idx != -1)
         {
-            target = &ss_table[found_idx];
-            target->is_online = 1;
-            LOG_SUCCESS("Storage Server at port %d recovered back online successfully!", target->client_port);
+            // FIX: Re-seed paths into Trie structure upon server reconnects/re-registrations
+            ss_table[found_idx].is_online = 1;
+            target_ss_id = found_idx;
+            ss_table[found_idx].path_count = payload->path_count;
+            for (int i = 0; i < payload->path_count; i++)
+            {
+                strncpy(ss_table[found_idx].paths[i], payload->paths[i], MAX_PATH_LEN);
+                trie_insert(trie_root, payload->paths[i], target_ss_id);
+            }
+            LOG_SUCCESS("Storage Server at port %d recovered online and Trie paths re-seeded successfully!", ss_table[found_idx].client_port);
         }
         else if (registered_ss_count < 10)
         {
-            target = &ss_table[registered_ss_count++];
+            target_ss_id = registered_ss_count;
+            RegisteredSS *target = &ss_table[registered_ss_count++];
             target->is_online = 1;
             strncpy(target->ip, payload->ip, IP_LEN);
             target->nm_port = payload->nm_port;
             target->client_port = payload->client_port;
             target->path_count = payload->path_count;
+
             for (int i = 0; i < payload->path_count; i++)
             {
                 strncpy(target->paths[i], payload->paths[i], MAX_PATH_LEN);
                 target->is_being_written[i] = 0;
+                trie_insert(trie_root, payload->paths[i], target_ss_id);
             }
-            LOG_SUCCESS("Successfully registered Storage Server #%d from %s", registered_ss_count, payload->ip);
+            LOG_SUCCESS("Registered Storage Server #%d from %s", registered_ss_count, payload->ip);
         }
         pthread_mutex_unlock(&table_mutex);
 
         Packet ack;
         memset(&ack, 0, sizeof(Packet));
         ack.msg_type = MSG_REGISTER_ACK;
-        strcpy(ack.payload.text, "Registration processed and stored.");
+        strcpy(ack.payload.text, "Registration optimization tracking live.");
         send(client_fd, &ack, sizeof(Packet), 0);
     }
     else if (inbound.msg_type == MSG_LOOKUP)
     {
         pthread_mutex_lock(&table_mutex);
-        int matched_ss = -1;
-        int target_path_idx = -1;
 
-        for (int i = 0; i < registered_ss_count; i++)
+        struct timeval start_time, end_time;
+
+        // 1. Check LRU Cache layer
+        gettimeofday(&start_time, NULL);
+        int matched_ss = cache_get(route_cache, inbound.path);
+        gettimeofday(&end_time, NULL);
+        long cache_time = (end_time.tv_sec - start_time.tv_sec) * 1000000 + (end_time.tv_usec - start_time.tv_usec);
+
+        if (matched_ss != -1)
         {
-            if (!ss_table[i].is_online)
-                continue;
-            for (int j = 0; j < ss_table[i].path_count; j++)
-            {
-                if (strcmp(ss_table[i].paths[j], inbound.path) == 0)
-                {
-                    matched_ss = i;
-                    target_path_idx = j;
-                    break;
-                }
-            }
+            LOG_INFO("[BENCHMARK] Cache HIT! Path resolved in %ld microseconds.", cache_time);
+        }
+        else
+        {
+            // 2. Cache Miss: Query Trie structure
+            gettimeofday(&start_time, NULL);
+            matched_ss = trie_search(trie_root, inbound.path);
+            gettimeofday(&end_time, NULL);
+            long trie_time = (end_time.tv_sec - start_time.tv_sec) * 1000000 + (end_time.tv_usec - start_time.tv_usec);
+
+            LOG_INFO("[BENCHMARK] Cache MISS. Trie indexed resolve completed in %ld microseconds.", trie_time);
             if (matched_ss != -1)
-                break;
+            {
+                cache_put(route_cache, inbound.path, matched_ss);
+            }
         }
 
         Packet out;
         memset(&out, 0, sizeof(Packet));
 
-        if (matched_ss != -1)
+        if (matched_ss != -1 && ss_table[matched_ss].is_online)
         {
-            // Enforce Read/Write Exclusivity Locking Logic
-            if (inbound.error_code == 1)
-            { // Client explicitly requested a WRITE channel lookup
-                if (ss_table[matched_ss].is_being_written[target_path_idx])
+            int target_path_idx = -1;
+            for (int j = 0; j < ss_table[matched_ss].path_count; j++)
+            {
+                if (strcmp(ss_table[matched_ss].paths[j], inbound.path) == 0)
                 {
-                    out.msg_type = MSG_ERROR;
-                    out.error_code = ERR_FILE_BUSY_WRITING;
-                    LOG_ERROR("Rejected WRITE lookup request. Path is locked by another client: %s", inbound.path);
-                }
-                else
-                {
-                    ss_table[matched_ss].is_being_written[target_path_idx] = 1; // Acquire lock
-                    out.msg_type = MSG_LOOKUP_ACK;
-                    sprintf(out.payload.text, "%s:%d", ss_table[matched_ss].ip, ss_table[matched_ss].client_port);
-                    LOG_INFO("Routing WRITE path lookup [%s] to Storage Server %d (Lock Acquired)", inbound.path, matched_ss + 1);
+                    target_path_idx = j;
+                    break;
                 }
             }
+
+            // FIX: Guard against missing path array synchronization index issues
+            if (target_path_idx == -1)
+            {
+                out.msg_type = MSG_ERROR;
+                out.error_code = ERR_FILE_NOT_FOUND;
+                LOG_ERROR("Trie matched but flat array index out of sync for path: %s", inbound.path);
+            }
             else
-            { // Standard READ or STREAM lookup request
-                if (ss_table[matched_ss].is_being_written[target_path_idx])
-                {
-                    out.msg_type = MSG_ERROR;
-                    out.error_code = ERR_FILE_BUSY_WRITING;
-                    LOG_ERROR("Rejected READ lookup request. Path is currently being modified: %s", inbound.path);
+            {
+                // Exclusivity Checks
+                if (inbound.error_code == 1)
+                { // WRITE intention requested
+                    if (ss_table[matched_ss].is_being_written[target_path_idx])
+                    {
+                        out.msg_type = MSG_ERROR;
+                        out.error_code = ERR_FILE_BUSY_WRITING;
+                        LOG_ERROR("Rejected WRITE lookup. Path busy: %s", inbound.path);
+                    }
+                    else
+                    {
+                        ss_table[matched_ss].is_being_written[target_path_idx] = 1;
+                        out.msg_type = MSG_LOOKUP_ACK;
+                        sprintf(out.payload.text, "%s:%d", ss_table[matched_ss].ip, ss_table[matched_ss].client_port);
+                        LOG_SUCCESS("WRITE entry routing validated for Storage Server %d", matched_ss + 1);
+                    }
                 }
                 else
-                {
-                    out.msg_type = MSG_LOOKUP_ACK;
-                    sprintf(out.payload.text, "%s:%d", ss_table[matched_ss].ip, ss_table[matched_ss].client_port);
-                    LOG_INFO("Routing READ/STREAM path lookup [%s] to Storage Server %d", inbound.path, matched_ss + 1);
+                { // Standard READ path intent
+                    if (ss_table[matched_ss].is_being_written[target_path_idx])
+                    {
+                        out.msg_type = MSG_ERROR;
+                        out.error_code = ERR_FILE_BUSY_WRITING;
+                        LOG_ERROR("Rejected READ lookup. Path modification in progress: %s", inbound.path);
+                    }
+                    else
+                    {
+                        out.msg_type = MSG_LOOKUP_ACK;
+                        sprintf(out.payload.text, "%s:%d", ss_table[matched_ss].ip, ss_table[matched_ss].client_port);
+                    }
                 }
             }
         }
@@ -139,7 +182,7 @@ void *handle_node_connection(void *arg)
         {
             out.msg_type = MSG_ERROR;
             out.error_code = ERR_FILE_NOT_FOUND;
-            LOG_ERROR("Requested path resource could not be found: %s", inbound.path);
+            LOG_ERROR("Path resolution lookup returned missing: %s", inbound.path);
         }
         pthread_mutex_unlock(&table_mutex);
         send(client_fd, &out, sizeof(Packet), 0);
@@ -160,24 +203,12 @@ void *handle_node_connection(void *arg)
             return NULL;
         }
 
-        int target_ss = 0; // Route mediated command to primary Storage Server
+        int target_ss = 0;
         if (inbound.msg_type == MSG_DELETE || inbound.msg_type == MSG_INFO)
         {
-            // Find which storage server actually holds the file for deletion or metadata inspection
-            int found_ss = -1;
-            for (int i = 0; i < registered_ss_count; i++)
-            {
-                for (int j = 0; j < ss_table[i].path_count; j++)
-                {
-                    if (strcmp(ss_table[i].paths[j], inbound.path) == 0)
-                    {
-                        found_ss = i;
-                        break;
-                    }
-                }
-            }
-            if (found_ss != -1)
-                target_ss = found_ss;
+            int lookup_ss = trie_search(trie_root, inbound.path);
+            if (lookup_ss != -1)
+                target_ss = lookup_ss;
         }
 
         int ss_sock = connect_to_server(ss_table[target_ss].ip, ss_table[target_ss].nm_port);
@@ -187,31 +218,38 @@ void *handle_node_connection(void *arg)
             recv(ss_sock, &relay_ack, sizeof(Packet), 0);
             close(ss_sock);
 
-            if (inbound.msg_type == MSG_CREATE && relay_ack.error_code == SUCCESS)
+            if (relay_ack.error_code == SUCCESS)
             {
-                int p_idx = ss_table[target_ss].path_count;
-                if (p_idx < MAX_PATHS)
+                if (inbound.msg_type == MSG_CREATE)
                 {
-                    strncpy(ss_table[target_ss].paths[p_idx], inbound.path, MAX_PATH_LEN);
-                    ss_table[target_ss].is_being_written[p_idx] = 0;
-                    ss_table[target_ss].path_count++;
-                }
-            }
-            if (inbound.msg_type == MSG_DELETE && relay_ack.error_code == SUCCESS)
-            {
-                // Remove path from internal directory table structure
-                for (int j = 0; j < ss_table[target_ss].path_count; j++)
-                {
-                    if (strcmp(ss_table[target_ss].paths[j], inbound.path) == 0)
+                    int p_idx = ss_table[target_ss].path_count;
+                    if (p_idx < MAX_PATHS)
                     {
-                        for (int k = j; k < ss_table[target_ss].path_count - 1; k++)
-                        {
-                            strcpy(ss_table[target_ss].paths[k], ss_table[target_ss].paths[k + 1]);
-                            ss_table[target_ss].is_being_written[k] = ss_table[target_ss].is_being_written[k + 1];
-                        }
-                        ss_table[target_ss].path_count--;
-                        break;
+                        strncpy(ss_table[target_ss].paths[p_idx], inbound.path, MAX_PATH_LEN);
+                        ss_table[target_ss].is_being_written[p_idx] = 0;
+                        ss_table[target_ss].path_count++;
+
+                        trie_insert(trie_root, inbound.path, target_ss);
+                        cache_invalidate(route_cache, inbound.path);
                     }
+                }
+                else if (inbound.msg_type == MSG_DELETE)
+                {
+                    for (int j = 0; j < ss_table[target_ss].path_count; j++)
+                    {
+                        if (strcmp(ss_table[target_ss].paths[j], inbound.path) == 0)
+                        {
+                            for (int k = j; k < ss_table[target_ss].path_count - 1; k++)
+                            {
+                                strcpy(ss_table[target_ss].paths[k], ss_table[target_ss].paths[k + 1]);
+                                ss_table[target_ss].is_being_written[k] = ss_table[target_ss].is_being_written[k + 1];
+                            }
+                            ss_table[target_ss].path_count--;
+                            break;
+                        }
+                    }
+                    trie_delete_path(trie_root, inbound.path);
+                    cache_invalidate(route_cache, inbound.path);
                 }
             }
         }
@@ -220,21 +258,22 @@ void *handle_node_connection(void *arg)
             relay_ack.msg_type = MSG_ERROR;
             relay_ack.error_code = ERR_SS_UNREACHABLE;
         }
+    publicKey:
         pthread_mutex_unlock(&table_mutex);
         send(client_fd, &relay_ack, sizeof(Packet), 0);
     }
     else if (inbound.msg_type == MSG_ACK)
     {
-        // Unlock notification loop originating from the Client signaling write session completion
         pthread_mutex_lock(&table_mutex);
-        for (int i = 0; i < registered_ss_count; i++)
+        int matched_ss = trie_search(trie_root, inbound.path);
+        if (matched_ss != -1)
         {
-            for (int j = 0; j < ss_table[i].path_count; j++)
+            for (int j = 0; j < ss_table[matched_ss].path_count; j++)
             {
-                if (strcmp(ss_table[i].paths[j], inbound.path) == 0)
+                if (strcmp(ss_table[matched_ss].paths[j], inbound.path) == 0)
                 {
-                    ss_table[i].is_being_written[j] = 0; // Release lock
-                    LOG_SUCCESS("Released exclusive WRITE lock on path resource: %s", inbound.path);
+                    ss_table[matched_ss].is_being_written[j] = 0;
+                    LOG_SUCCESS("Cleared transaction modifications lock for path: %s", inbound.path);
                     break;
                 }
             }
@@ -257,12 +296,16 @@ int main(int argc, char *argv[])
     char local_ip[IP_LEN];
     get_local_ip(local_ip, sizeof(local_ip));
 
-    LOG_INFO("Initializing Threaded Naming Server Core Engine...");
+    // Allocate optimization layers
+    trie_root = create_trie_node("ROOT");
+    route_cache = create_cache();
+
+    LOG_INFO("Initializing Optimized Naming Server Core Engine...");
     int s_fd = create_listening_socket(port);
     if (s_fd < 0)
         exit(EXIT_FAILURE);
 
-    LOG_SUCCESS("Naming Server online [IP: %s, Port: %d] and monitoring requests...", local_ip, port);
+    LOG_SUCCESS("Naming Server online [IP: %s, Port: %d] with Trie Search & LRU Cache active...", local_ip, port);
     while (1)
     {
         struct sockaddr_in addr;
