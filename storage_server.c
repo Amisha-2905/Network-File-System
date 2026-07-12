@@ -3,6 +3,70 @@
 #include <sys/stat.h>
 
 int my_client_port;
+char nm_global_ip[IP_LEN];
+int nm_global_port;
+
+// Day 6: Async Task Queue
+typedef struct AsyncWriteTask
+{
+    char path[MAX_PATH_LEN];
+    char data[MAX_DATA_SIZE];
+    size_t size;
+    uint32_t request_id;
+    struct AsyncWriteTask *next;
+} AsyncWriteTask;
+
+AsyncWriteTask *task_queue_head = NULL;
+AsyncWriteTask *task_queue_tail = NULL;
+pthread_mutex_t queue_mutex = PTHREAD_MUTEX_INITIALIZER;
+pthread_cond_t queue_cond = PTHREAD_COND_INITIALIZER;
+
+void *bg_flush_worker(void *arg)
+{
+    while (1)
+    {
+        pthread_mutex_lock(&queue_mutex);
+        while (task_queue_head == NULL)
+        {
+            pthread_cond_wait(&queue_cond, &queue_mutex);
+        }
+
+        AsyncWriteTask *task = task_queue_head;
+        task_queue_head = task->next;
+        if (task_queue_head == NULL)
+            task_queue_tail = NULL;
+        pthread_mutex_unlock(&queue_mutex);
+
+        // Flush to persistent disk
+        LOG_INFO("Background thread flushing %zu bytes to %s...", task->size, task->path);
+        FILE *fp = fopen(task->path, "wb");
+        if (fp)
+        {
+            fwrite(task->data, 1, task->size, fp);
+            fclose(fp);
+            LOG_SUCCESS("Async flush complete for path: %s", task->path);
+        }
+        else
+        {
+            LOG_ERROR("Async flush failed. Permission denied on path: %s", task->path);
+        }
+
+        // Notify NM to clear lock and update status table
+        int nm_fd = connect_to_server(nm_global_ip, nm_global_port);
+        if (nm_fd >= 0)
+        {
+            Packet complete_pkt;
+            memset(&complete_pkt, 0, sizeof(Packet));
+            complete_pkt.msg_type = MSG_ASYNC_COMPLETE;
+            complete_pkt.request_id = task->request_id;
+            strncpy(complete_pkt.path, task->path, MAX_PATH_LEN);
+            send(nm_fd, &complete_pkt, sizeof(Packet), 0);
+            close(nm_fd);
+        }
+        free(task);
+    }
+    return NULL;
+}
 
 void *handle_client_requests(void *arg)
 {
@@ -39,14 +103,11 @@ void *handle_client_requests(void *arg)
             block.msg_type = req.msg_type;
             block.data_size = fread(block.payload.text, 1, MAX_DATA_SIZE, fp);
             if (block.data_size > 0)
-            {
                 send(client_fd, &block, sizeof(Packet), 0);
-            }
             if (req.msg_type == MSG_STREAM)
-                usleep(15000); // Dynamic audio stream buffer delay
+                usleep(15000);
         }
         fclose(fp);
-
         reply.msg_type = MSG_ACK;
         reply.error_code = SUCCESS;
         send(client_fd, &reply, sizeof(Packet), 0);
@@ -54,25 +115,55 @@ void *handle_client_requests(void *arg)
     }
     else if (req.msg_type == MSG_WRITE)
     {
-        LOG_INFO("Executing baseline synchronous WRITE operation on file: %s", req.path);
-        FILE *fp = fopen(req.path, "wb");
-        if (fp)
+        if (req.sync_flag)
         {
-            size_t written = fwrite(req.payload.text, 1, req.data_size, fp);
-            fclose(fp);
-
-            reply.msg_type = MSG_ACK;
-            reply.error_code = SUCCESS;
-            sprintf(reply.payload.text, "Successfully wrote %zu bytes synchronously to storage disk.", written);
-            LOG_SUCCESS("Synchronous write completed for path: %s", req.path);
+            LOG_INFO("Executing baseline synchronous WRITE operation on file: %s", req.path);
+            FILE *fp = fopen(req.path, "wb");
+            if (fp)
+            {
+                size_t written = fwrite(req.payload.text, 1, req.data_size, fp);
+                fclose(fp);
+                reply.msg_type = MSG_ACK;
+                reply.error_code = SUCCESS;
+                sprintf(reply.payload.text, "Successfully wrote %zu bytes synchronously to storage disk.", written);
+                LOG_SUCCESS("Synchronous write completed for path: %s", req.path);
+            }
+            else
+            {
+                reply.msg_type = MSG_ERROR;
+                reply.error_code = ERR_PERMISSION_DENIED;
+            }
+            send(client_fd, &reply, sizeof(Packet), 0);
         }
         else
         {
-            reply.msg_type = MSG_ERROR;
-            reply.error_code = ERR_PERMISSION_DENIED;
-            LOG_ERROR("Write operation denied permission on path: %s", req.path);
+            LOG_INFO("Queueing ASYNC write task to memory buffer for path: %s", req.path);
+            AsyncWriteTask *task = malloc(sizeof(AsyncWriteTask));
+            strncpy(task->path, req.path, MAX_PATH_LEN);
+            memcpy(task->data, req.payload.text, req.data_size);
+            task->size = req.data_size;
+            task->request_id = req.request_id;
+            task->next = NULL;
+
+            pthread_mutex_lock(&queue_mutex);
+            if (task_queue_tail == NULL)
+            {
+                task_queue_head = task;
+                task_queue_tail = task;
+            }
+            else
+            {
+                task_queue_tail->next = task;
+                task_queue_tail = task;
+            }
+            pthread_cond_signal(&queue_cond);
+            pthread_mutex_unlock(&queue_mutex);
+
+            reply.msg_type = MSG_ACK;
+            reply.error_code = SUCCESS;
+            sprintf(reply.payload.text, "Async task queued successfully. Tracking ID: %d", req.request_id);
+            send(client_fd, &reply, sizeof(Packet), 0);
         }
-        send(client_fd, &reply, sizeof(Packet), 0);
     }
 
     close(client_fd);
@@ -111,13 +202,18 @@ int main(int argc, char *argv[])
         exit(EXIT_FAILURE);
     }
 
-    char *nm_ip = argv[1];
-    int nm_port = atoi(argv[2]);
+    strncpy(nm_global_ip, argv[1], IP_LEN);
+    nm_global_port = atoi(argv[2]);
     int my_nm_port = atoi(argv[3]);
     my_client_port = atoi(argv[4]);
 
     char local_ip[IP_LEN];
     get_local_ip(local_ip, sizeof(local_ip));
+
+    // Boot background async flusher
+    pthread_t flush_thread;
+    pthread_create(&flush_thread, NULL, bg_flush_worker, NULL);
+    pthread_detach(flush_thread);
 
     pthread_t client_thread;
     pthread_create(&client_thread, NULL, client_listener_loop, NULL);
@@ -137,7 +233,7 @@ int main(int argc, char *argv[])
     }
     reg.payload.ss_payload.path_count = p_idx;
 
-    int nm_fd = connect_to_server(nm_ip, nm_port);
+    int nm_fd = connect_to_server(nm_global_ip, nm_global_port);
     if (nm_fd >= 0)
     {
         send(nm_fd, &reg, sizeof(Packet), 0);
@@ -173,9 +269,7 @@ int main(int argc, char *argv[])
                 LOG_SUCCESS("Executed CREATE command for resource: %s", task.path);
             }
             else
-            {
                 reply.error_code = ERR_PERMISSION_DENIED;
-            }
         }
         else if (task.msg_type == MSG_DELETE)
         {
@@ -186,9 +280,7 @@ int main(int argc, char *argv[])
                 LOG_SUCCESS("Executed DELETE command for resource: %s", task.path);
             }
             else
-            {
                 reply.error_code = ERR_FILE_NOT_FOUND;
-            }
         }
         else if (task.msg_type == MSG_INFO)
         {
@@ -204,13 +296,11 @@ int main(int argc, char *argv[])
             {
                 reply.msg_type = MSG_ERROR;
                 reply.error_code = ERR_FILE_NOT_FOUND;
-                LOG_ERROR("Failed to stat target file: %s", task.path);
             }
         }
         send(nm_task_fd, &reply, sizeof(Packet), 0);
         close(nm_task_fd);
     }
-
     close(nm_listen_fd);
     return 0;
 }

@@ -22,6 +22,10 @@ pthread_mutex_t table_mutex = PTHREAD_MUTEX_INITIALIZER;
 TrieNode *trie_root;
 LRUCache *route_cache;
 
+// Day 6: Async Task Ledger
+int async_tasks[1024] = {0}; // 0: None, 1: PENDING, 2: COMPLETED
+int next_task_id = 1;
+
 void send_initial_ack(int client_fd)
 {
     Packet init_ack;
@@ -43,8 +47,7 @@ void *handle_node_connection(void *arg)
         return NULL;
     }
 
-    // Spec 3.2: Issue immediate initial acknowledgment for incoming client requests
-    if (inbound.msg_type != MSG_REGISTER && inbound.msg_type != MSG_ACK)
+    if (inbound.msg_type != MSG_REGISTER && inbound.msg_type != MSG_ACK && inbound.msg_type != MSG_ASYNC_COMPLETE)
     {
         send_initial_ack(client_fd);
     }
@@ -75,7 +78,7 @@ void *handle_node_connection(void *arg)
                 strncpy(ss_table[found_idx].paths[i], payload->paths[i], MAX_PATH_LEN);
                 trie_insert(trie_root, payload->paths[i], target_ss_id);
             }
-            LOG_SUCCESS("Storage Server at port %d recovered back online and Trie paths re-seeded successfully!", ss_table[found_idx].client_port);
+            LOG_SUCCESS("Storage Server at port %d recovered back online!", ss_table[found_idx].client_port);
         }
         else if (registered_ss_count < 10)
         {
@@ -106,16 +109,12 @@ void *handle_node_connection(void *arg)
     else if (inbound.msg_type == MSG_LOOKUP)
     {
         pthread_mutex_lock(&table_mutex);
-        struct timeval start_time, end_time;
-
         int matched_ss = cache_get(route_cache, inbound.path);
         if (matched_ss == -1)
         {
             matched_ss = trie_search(trie_root, inbound.path);
             if (matched_ss != -1)
-            {
                 cache_put(route_cache, inbound.path, matched_ss);
-            }
         }
 
         Packet out;
@@ -136,23 +135,24 @@ void *handle_node_connection(void *arg)
             if (target_path_idx == -1)
             {
                 out.msg_type = MSG_ERROR;
-                out.error_code = ERR_INVALID_PATH; // Explicit Day 5 error mapping
-                LOG_ERROR("Trie matched but directory struct out of sync for: %s", inbound.path);
+                out.error_code = ERR_INVALID_PATH;
             }
             else
             {
-                if (inbound.error_code == 1)
-                { // WRITE requested
+                if (inbound.error_code == 1) // WRITE requested
+                {
                     if (ss_table[matched_ss].is_being_written[target_path_idx])
                     {
                         out.msg_type = MSG_ERROR;
-                        out.error_code = ERR_FILE_BUSY_WRITING; // Explicit Exclusivity Error Code [cite: 302, 304]
-                        LOG_ERROR("Rejected WRITE lookup. Path locked: %s", inbound.path);
+                        out.error_code = ERR_FILE_BUSY_WRITING;
                     }
                     else
                     {
                         ss_table[matched_ss].is_being_written[target_path_idx] = 1;
+                        int task_id = next_task_id++;
+                        async_tasks[task_id] = 1; // Mark as PENDING
                         out.msg_type = MSG_LOOKUP_ACK;
+                        out.request_id = task_id; // Pass tracking token
                         sprintf(out.payload.text, "%s:%d", ss_table[matched_ss].ip, ss_table[matched_ss].client_port);
                     }
                 }
@@ -161,8 +161,7 @@ void *handle_node_connection(void *arg)
                     if (ss_table[matched_ss].is_being_written[target_path_idx])
                     {
                         out.msg_type = MSG_ERROR;
-                        out.error_code = ERR_FILE_BUSY_WRITING; // Explicit Exclusivity Error Code [cite: 302, 304]
-                        LOG_ERROR("Rejected READ lookup. Path currently busy: %s", inbound.path);
+                        out.error_code = ERR_FILE_BUSY_WRITING;
                     }
                     else
                     {
@@ -175,8 +174,7 @@ void *handle_node_connection(void *arg)
         else
         {
             out.msg_type = MSG_ERROR;
-            out.error_code = ERR_FILE_NOT_FOUND; // Explicit missing error mapping
-            LOG_ERROR("Path resolution lookup returned missing: %s", inbound.path);
+            out.error_code = ERR_FILE_NOT_FOUND;
         }
         pthread_mutex_unlock(&table_mutex);
         send(client_fd, &out, sizeof(Packet), 0);
@@ -190,7 +188,7 @@ void *handle_node_connection(void *arg)
         if (registered_ss_count == 0)
         {
             relay_ack.msg_type = MSG_ERROR;
-            relay_ack.error_code = ERR_SS_UNREACHABLE; // Explicit unreachable code mapping
+            relay_ack.error_code = ERR_SS_UNREACHABLE;
             pthread_mutex_unlock(&table_mutex);
             send(client_fd, &relay_ack, sizeof(Packet), 0);
             close(client_fd);
@@ -202,9 +200,7 @@ void *handle_node_connection(void *arg)
         {
             int lookup_ss = trie_search(trie_root, inbound.path);
             if (lookup_ss != -1)
-            {
                 target_ss = lookup_ss;
-            }
             else
             {
                 relay_ack.msg_type = MSG_ERROR;
@@ -219,7 +215,6 @@ void *handle_node_connection(void *arg)
         char target_ip[IP_LEN];
         int target_port = ss_table[target_ss].nm_port;
         strncpy(target_ip, ss_table[target_ss].ip, IP_LEN);
-
         pthread_mutex_unlock(&table_mutex);
 
         int ss_sock = connect_to_server(target_ip, target_port);
@@ -240,7 +235,6 @@ void *handle_node_connection(void *arg)
                         strncpy(ss_table[target_ss].paths[p_idx], inbound.path, MAX_PATH_LEN);
                         ss_table[target_ss].is_being_written[p_idx] = 0;
                         ss_table[target_ss].path_count++;
-
                         trie_insert(trie_root, inbound.path, target_ss);
                         cache_invalidate(route_cache, inbound.path);
                     }
@@ -263,7 +257,7 @@ void *handle_node_connection(void *arg)
                     trie_delete_path(trie_root, inbound.path);
                     cache_invalidate(route_cache, inbound.path);
                 }
-                pthread_mutex_unlock(&table_mutex); // Unlock after structural changes
+                pthread_mutex_unlock(&table_mutex);
             }
         }
         else
@@ -271,13 +265,35 @@ void *handle_node_connection(void *arg)
             relay_ack.msg_type = MSG_ERROR;
             relay_ack.error_code = ERR_SS_UNREACHABLE;
         }
-
-        // Send final ACK back to client (no lock needed here)
         send(client_fd, &relay_ack, sizeof(Packet), 0);
     }
-    else if (inbound.msg_type == MSG_ACK)
+    else if (inbound.msg_type == MSG_STATUS)
+    {
+        Packet status_ack;
+        memset(&status_ack, 0, sizeof(Packet));
+        status_ack.msg_type = MSG_ACK;
+
+        pthread_mutex_lock(&table_mutex);
+        int state = (inbound.request_id < 1024) ? async_tasks[inbound.request_id] : 0;
+        pthread_mutex_unlock(&table_mutex);
+
+        if (state == 1)
+            strcpy(status_ack.payload.text, "PENDING (In Memory Buffer Queue)");
+        else if (state == 2)
+            strcpy(status_ack.payload.text, "COMPLETED (Successfully Flushed to Disk)");
+        else
+            strcpy(status_ack.payload.text, "UNKNOWN (Invalid ID)");
+
+        send(client_fd, &status_ack, sizeof(Packet), 0);
+    }
+    else if (inbound.msg_type == MSG_ACK || inbound.msg_type == MSG_ASYNC_COMPLETE)
     {
         pthread_mutex_lock(&table_mutex);
+        if (inbound.msg_type == MSG_ASYNC_COMPLETE && inbound.request_id < 1024)
+        {
+            async_tasks[inbound.request_id] = 2; // Mark COMPLETED
+        }
+
         int matched_ss = trie_search(trie_root, inbound.path);
         if (matched_ss != -1)
         {
@@ -317,7 +333,7 @@ int main(int argc, char *argv[])
     if (s_fd < 0)
         exit(EXIT_FAILURE);
 
-    LOG_SUCCESS("Naming Server online [IP: %s, Port: %d] (Day 5 Non-Blocking ACKs Active)...", local_ip, port);
+    LOG_SUCCESS("Naming Server online [IP: %s, Port: %d]...", local_ip, port);
     while (1)
     {
         struct sockaddr_in addr;

@@ -23,7 +23,9 @@ typedef enum
     MSG_LIST,
     MSG_INFO,
     MSG_ACK,
-    MSG_ERROR
+    MSG_ERROR,
+    MSG_STATUS,
+    MSG_ASYNC_COMPLETE
 } MsgType;
 
 typedef enum
@@ -50,6 +52,8 @@ typedef struct
     uint32_t msg_type;
     uint32_t error_code;
     uint32_t data_size;
+    uint32_t request_id;
+    uint32_t sync_flag;
     char path[MAX_PATH_LEN];
     union
     {
