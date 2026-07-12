@@ -11,72 +11,138 @@ typedef struct
     int is_online;
 } RegisteredSS;
 
-// Central directory table
 RegisteredSS ss_table[10];
 int registered_ss_count = 0;
 pthread_mutex_t table_mutex = PTHREAD_MUTEX_INITIALIZER;
 
-// Thread function to handle individual node handshakes asynchronously
 void *handle_node_connection(void *arg)
 {
     int client_fd = *((int *)arg);
     free(arg);
 
-    Packet inbound_packet;
-    ssize_t bytes_received = recv(client_fd, &inbound_packet, sizeof(Packet), 0);
-
-    if (bytes_received <= 0)
+    Packet inbound;
+    if (recv(client_fd, &inbound, sizeof(Packet), 0) <= 0)
     {
-        LOG_ERROR("Connection dropped or zero data read from connecting node.");
         close(client_fd);
         return NULL;
     }
 
-    if (inbound_packet.msg_type == MSG_REGISTER)
+    if (inbound.msg_type == MSG_REGISTER)
     {
-        // Read directly from our new compiler-safe union layout structure
-        SS_RegisterPayload *payload = &inbound_packet.payload.ss_payload;
-
+        SS_RegisterPayload *payload = &inbound.payload.ss_payload;
         pthread_mutex_lock(&table_mutex);
-        if (registered_ss_count < 10)
+
+        // Recover if storage server node re-attaches with existing matching configurations
+        int found_idx = -1;
+        for (int i = 0; i < registered_ss_count; i++)
         {
-            RegisteredSS *new_ss = &ss_table[registered_ss_count];
-            strncpy(new_ss->ip, payload->ip, IP_LEN);
-            new_ss->nm_port = payload->nm_port;
-            new_ss->client_port = payload->client_port;
-            new_ss->path_count = payload->path_count;
-            new_ss->is_online = 1;
-
-            for (int i = 0; i < payload->path_count; i++)
+            if (ss_table[i].client_port == payload->client_port && strcmp(ss_table[i].ip, payload->ip) == 0)
             {
-                strncpy(new_ss->paths[i], payload->paths[i], MAX_PATH_LEN);
+                found_idx = i;
+                break;
             }
-            registered_ss_count++;
+        }
 
-            LOG_SUCCESS("Successfully registered Storage Server #%d from %s", registered_ss_count, payload->ip);
-            LOG_INFO("Active Paths stored in table for this node:");
+        RegisteredSS *target = NULL;
+        if (found_idx != -1)
+        {
+            target = &ss_table[found_idx];
+            target->is_online = 1;
+            LOG_SUCCESS("Storage Server at port %d recovered back online successfully!", target->client_port);
+        }
+        else if (registered_ss_count < 10)
+        {
+            target = &ss_table[registered_ss_count++];
+            target->is_online = 1;
+            strncpy(target->ip, payload->ip, IP_LEN);
+            target->nm_port = payload->nm_port;
+            target->client_port = payload->client_port;
+            target->path_count = payload->path_count;
             for (int i = 0; i < payload->path_count; i++)
             {
-                LOG_MSG("  -> %s", payload->paths[i]);
+                strncpy(target->paths[i], payload->paths[i], MAX_PATH_LEN);
+            }
+            LOG_SUCCESS("Successfully registered Storage Server #%d from %s", registered_ss_count, payload->ip);
+        }
+        pthread_mutex_unlock(&table_mutex);
+
+        Packet ack;
+        memset(&ack, 0, sizeof(Packet));
+        ack.msg_type = MSG_REGISTER_ACK;
+        strcpy(ack.payload.text, "Registration processed.");
+        send(client_fd, &ack, sizeof(Packet), 0);
+    }
+    else if (inbound.msg_type == MSG_LOOKUP)
+    {
+        pthread_mutex_lock(&table_mutex);
+        int matched_ss = -1;
+        for (int i = 0; i < registered_ss_count; i++)
+        {
+            if (!ss_table[i].is_online)
+                continue;
+            for (int j = 0; j < ss_table[i].path_count; j++)
+            {
+                if (strcmp(ss_table[i].paths[j], inbound.path) == 0)
+                {
+                    matched_ss = i;
+                    break;
+                }
+            }
+            if (matched_ss != -1)
+                break;
+        }
+
+        Packet out;
+        memset(&out, 0, sizeof(Packet));
+        if (matched_ss != -1)
+        {
+            out.msg_type = MSG_LOOKUP_ACK;
+            sprintf(out.payload.text, "%s:%d", ss_table[matched_ss].ip, ss_table[matched_ss].client_port);
+            LOG_INFO("Routing path lookup [%s] to Storage Server %d", inbound.path, matched_ss + 1);
+        }
+        else
+        {
+            out.msg_type = MSG_ERROR;
+            out.error_code = ERR_FILE_NOT_FOUND;
+            LOG_ERROR("Requested path resource could not be found: %s", inbound.path);
+        }
+        pthread_mutex_unlock(&table_mutex);
+        send(client_fd, &out, sizeof(Packet), 0);
+    }
+    else if (inbound.msg_type == MSG_CREATE || inbound.msg_type == MSG_DELETE)
+    {
+        // Direct mediation: Forward command directly over to the designated primary Storage Server
+        pthread_mutex_lock(&table_mutex);
+        int target_ss = 0; // Baseline: Route to primary node under simplified 3-day conditions
+
+        int ss_sock = connect_to_server(ss_table[target_ss].ip, ss_table[target_ss].nm_port);
+        Packet relay_ack;
+        memset(&relay_ack, 0, sizeof(Packet));
+
+        if (ss_sock >= 0)
+        {
+            send(ss_sock, &inbound, sizeof(Packet), 0);
+            recv(ss_sock, &relay_ack, sizeof(Packet), 0);
+            close(ss_sock);
+
+            if (inbound.msg_type == MSG_CREATE && relay_ack.error_code == SUCCESS)
+            {
+                // Dynamically register new additions directly inside our global directory structure
+                int p_idx = ss_table[target_ss].path_count;
+                if (p_idx < MAX_PATHS)
+                {
+                    strncpy(ss_table[target_ss].paths[p_idx], inbound.path, MAX_PATH_LEN);
+                    ss_table[target_ss].path_count++;
+                }
             }
         }
         else
         {
-            LOG_ERROR("Directory table capacity overflow. Cannot register more servers.");
+            relay_ack.msg_type = MSG_ERROR;
+            relay_ack.error_code = ERR_SS_UNREACHABLE;
         }
         pthread_mutex_unlock(&table_mutex);
-
-        Packet ack_packet;
-        memset(&ack_packet, 0, sizeof(Packet));
-        ack_packet.msg_type = MSG_REGISTER_ACK;
-        ack_packet.error_code = SUCCESS;
-        strcpy(ack_packet.payload.text, "Registration verified and saved by Naming Server directory table.");
-
-        send(client_fd, &ack_packet, sizeof(Packet), 0);
-    }
-    else
-    {
-        LOG_ERROR("Unexpected instruction code received: %d", inbound_packet.msg_type);
+        send(client_fd, &relay_ack, sizeof(Packet), 0);
     }
 
     close(client_fd);
@@ -87,56 +153,41 @@ int main(int argc, char *argv[])
 {
     if (argc < 2)
     {
-        LOG_ERROR("Usage error. Correct command: %s <NM_Port>", argv[0]);
+        LOG_ERROR("Usage: %s <NM_Port>", argv[0]);
         exit(EXIT_FAILURE);
     }
 
-    int nm_port = atoi(argv[1]);
+    int port = atoi(argv[1]);
+
+    // Restore dynamic IP resolution and logging
     char local_ip[IP_LEN];
     get_local_ip(local_ip, sizeof(local_ip));
 
     LOG_INFO("Initializing Threaded Naming Server Core Engine...");
-    int server_fd = create_listening_socket(nm_port);
-    if (server_fd < 0)
+    int s_fd = create_listening_socket(port);
+    if (s_fd < 0)
     {
         LOG_ERROR("Critical failure initializing master listening socket. Exiting.");
         exit(EXIT_FAILURE);
     }
 
-    LOG_SUCCESS("Naming Server is online [IP: %s, Port: %d] and waiting for multiple concurrent connections...", local_ip, nm_port);
+    LOG_SUCCESS("Naming Server online [IP: %s, Port: %d] and monitoring requests...", local_ip, port);
 
     while (1)
     {
-        struct sockaddr_in client_addr;
-        socklen_t addr_len = sizeof(client_addr);
-        int client_fd = accept(server_fd, (struct sockaddr *)&client_addr, &addr_len);
-
-        if (client_fd < 0)
-        {
-            LOG_ERROR("Failed to accept incoming node connection.");
+        struct sockaddr_in addr;
+        socklen_t len = sizeof(addr);
+        int c_fd = accept(s_fd, (struct sockaddr *)&addr, &len);
+        if (c_fd < 0)
             continue;
-        }
 
-        LOG_INFO("New connection detected from network address: %s", inet_ntoa(client_addr.sin_addr));
-
-        // Allocate memory for the file descriptor to hand over to the worker thread safely
-        int *worker_fd = malloc(sizeof(int));
-        *worker_fd = client_fd;
-
-        pthread_t thread_id;
-        if (pthread_create(&thread_id, NULL, handle_node_connection, worker_fd) != 0)
-        {
-            LOG_ERROR("Failed to spawn parallel worker thread for incoming request.");
-            close(client_fd);
-            free(worker_fd);
-        }
-        else
-        {
-            // Detach thread to allow auto-cleanup of memory resources upon execution exit
-            pthread_detach(thread_id);
-        }
+        int *w_fd = malloc(sizeof(int));
+        *w_fd = c_fd;
+        pthread_t t;
+        pthread_create(&t, NULL, handle_node_connection, w_fd);
+        pthread_detach(t);
     }
 
-    close(server_fd);
+    close(s_fd);
     return 0;
 }
