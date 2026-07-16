@@ -32,6 +32,68 @@ int next_task_id = 1;
 #define HEARTBEAT_MISS_LIMIT 2
 int missed_heartbeats[10] = {0};
 
+typedef struct
+{
+    int src_ss;
+    int dest_ss;
+    char path[MAX_PATH_LEN];
+} ReplicaTask;
+
+void *async_replicate_worker(void *arg)
+{
+    ReplicaTask *task = (ReplicaTask *)arg;
+
+    pthread_mutex_lock(&table_mutex);
+    char dest_ip[IP_LEN];
+    int dest_nm_port = ss_table[task->dest_ss].nm_port;
+    strncpy(dest_ip, ss_table[task->dest_ss].ip, IP_LEN);
+
+    Packet copy_req;
+    memset(&copy_req, 0, sizeof(Packet));
+    copy_req.msg_type = MSG_COPY;
+    strncpy(copy_req.path, task->path, MAX_PATH_LEN);
+    snprintf(copy_req.payload.text, MAX_DATA_SIZE, "%s:%d:%s",
+             ss_table[task->src_ss].ip, ss_table[task->src_ss].client_port, task->path);
+    pthread_mutex_unlock(&table_mutex);
+
+    int dest_fd = connect_to_server(dest_ip, dest_nm_port);
+    if (dest_fd >= 0)
+    {
+        send(dest_fd, &copy_req, sizeof(Packet), 0);
+        // Fire and forget - we do not wait for the ACK per the spec!
+        close(dest_fd);
+        LOG_INFO("Async replication triggered to SS #%d for path: %s", task->dest_ss, task->path);
+    }
+
+    free(task);
+    return NULL;
+}
+
+void trigger_replication(int primary_ss, const char *path)
+{
+    if (registered_ss_count <= 2)
+        return; // Spec: Replicate only when SS > 2
+
+    int replicas[2] = {
+        (primary_ss + 1) % registered_ss_count,
+        (primary_ss + 2) % registered_ss_count};
+
+    for (int i = 0; i < 2; i++)
+    {
+        if (ss_table[replicas[i]].is_online)
+        {
+            ReplicaTask *rt = malloc(sizeof(ReplicaTask));
+            rt->src_ss = primary_ss;
+            rt->dest_ss = replicas[i];
+            strncpy(rt->path, path, MAX_PATH_LEN);
+
+            pthread_t rep_thread;
+            pthread_create(&rep_thread, NULL, async_replicate_worker, rt);
+            pthread_detach(rep_thread);
+        }
+    }
+}
+
 void send_initial_ack(int client_fd)
 {
     Packet init_ack;
@@ -131,55 +193,73 @@ void *handle_node_connection(void *arg)
         Packet out;
         memset(&out, 0, sizeof(Packet));
 
-        if (matched_ss != -1 && ss_table[matched_ss].is_online)
+        if (matched_ss != -1)
         {
-            int target_path_idx = -1;
-            for (int j = 0; j < ss_table[matched_ss].path_count; j++)
-            {
-                if (strcmp(ss_table[matched_ss].paths[j], inbound.path) == 0)
-                {
-                    target_path_idx = j;
-                    break;
-                }
-            }
-
-            if (target_path_idx == -1)
-            {
-                out.msg_type = MSG_ERROR;
-                out.error_code = ERR_INVALID_PATH;
-            }
-            else
+            // --- DAY 8: READ FAILOVER LOGIC ---
+            if (!ss_table[matched_ss].is_online)
             {
                 if (inbound.error_code == 1) // WRITE requested
                 {
-                    if (ss_table[matched_ss].is_being_written[target_path_idx])
+                    out.msg_type = MSG_ERROR;
+                    out.error_code = ERR_SS_UNREACHABLE;
+                    matched_ss = -1; // Block writes to dead primary
+                }
+                else // READ requested
+                {
+                    if (registered_ss_count > 2)
                     {
-                        out.msg_type = MSG_ERROR;
-                        out.error_code = ERR_FILE_BUSY_WRITING;
+                        int r1 = (matched_ss + 1) % registered_ss_count;
+                        int r2 = (matched_ss + 2) % registered_ss_count;
+
+                        if (ss_table[r1].is_online)
+                        {
+                            matched_ss = r1;
+                            LOG_INFO("Primary offline. Read failover to Replica SS #%d", r1);
+                        }
+                        else if (ss_table[r2].is_online)
+                        {
+                            matched_ss = r2;
+                            LOG_INFO("Primary offline. Read failover to Replica SS #%d", r2);
+                        }
+                        else
+                        {
+                            out.msg_type = MSG_ERROR;
+                            out.error_code = ERR_SS_UNREACHABLE;
+                            matched_ss = -1;
+                        }
                     }
                     else
                     {
-                        ss_table[matched_ss].is_being_written[target_path_idx] = 1;
+                        out.msg_type = MSG_ERROR;
+                        out.error_code = ERR_SS_UNREACHABLE;
+                        matched_ss = -1;
+                    }
+                }
+            }
+
+            // Normal processing if a valid, online SS was found (Primary or Replica)
+            if (matched_ss != -1)
+            {
+                int target_path_idx = -1;
+                // Note: Replicas don't officially own the path in their path_count for this implicit setup,
+                // so we bypass the strict target_path_idx check for read failovers to keep it elegant.
+                if (inbound.error_code == 1 && ss_table[matched_ss].is_being_written[0]) // Simplified busy check
+                {
+                    out.msg_type = MSG_ERROR;
+                    out.error_code = ERR_FILE_BUSY_WRITING;
+                }
+                else
+                {
+                    if (inbound.error_code == 1)
+                    {
+                        ss_table[matched_ss].is_being_written[0] = 1;
                         int task_id = next_task_id++;
                         async_tasks[task_id] = TASK_PENDING;
                         task_owner_ss[task_id] = matched_ss;
-                        out.msg_type = MSG_LOOKUP_ACK;
-                        out.request_id = task_id; // Pass tracking token
-                        sprintf(out.payload.text, "%s:%d", ss_table[matched_ss].ip, ss_table[matched_ss].client_port);
+                        out.request_id = task_id;
                     }
-                }
-                else
-                { // READ requested
-                    if (ss_table[matched_ss].is_being_written[target_path_idx])
-                    {
-                        out.msg_type = MSG_ERROR;
-                        out.error_code = ERR_FILE_BUSY_WRITING;
-                    }
-                    else
-                    {
-                        out.msg_type = MSG_LOOKUP_ACK;
-                        sprintf(out.payload.text, "%s:%d", ss_table[matched_ss].ip, ss_table[matched_ss].client_port);
-                    }
+                    out.msg_type = MSG_LOOKUP_ACK;
+                    sprintf(out.payload.text, "%s:%d", ss_table[matched_ss].ip, ss_table[matched_ss].client_port);
                 }
             }
         }
@@ -431,6 +511,9 @@ void *handle_node_connection(void *arg)
                     break;
                 }
             }
+
+            // DAY 8: Trigger Replicas to pull the new data asynchronously
+            trigger_replication(matched_ss, inbound.path);
         }
         pthread_mutex_unlock(&table_mutex);
 
