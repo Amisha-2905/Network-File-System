@@ -1,0 +1,1516 @@
+[2026-07-17 03:01:16] [INFO] Initializing Async Non-Blocking Naming Server Core...
+[2026-07-17 03:01:16] [SUCCESS] Socket successfully listening on port 8080
+[2026-07-17 03:01:16] [SUCCESS] Naming Server online [IP: 10.1.50.173, Port: 8080]...
+[2026-07-17 03:01:31] [SUCCESS] Socket successfully listening on port 9091
+[2026-07-17 03:01:31] [SUCCESS] Connected successfully to 172.17.0.1:8080
+[2026-07-17 03:01:31] [SUCCESS] Registered Storage Server #1 from 10.1.50.173
+[2026-07-17 03:01:31] [SUCCESS] Registration confirmation complete: Registration optimization tracking live.
+[2026-07-17 03:01:31] [SUCCESS] Socket successfully listening on port 9090
+[2026-07-17 03:01:34] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:01:37] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:01:40] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:01:43] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:01:46] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:01:49] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:01:52] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:01:53] [SUCCESS] Socket successfully listening on port 9093
+[2026-07-17 03:01:53] [SUCCESS] Connected successfully to 172.17.0.1:8080
+[2026-07-17 03:01:53] [SUCCESS] Registered Storage Server #2 from 10.1.50.173
+[2026-07-17 03:01:53] [SUCCESS] Registration confirmation complete: Registration optimization tracking live.
+[2026-07-17 03:01:53] [SUCCESS] Socket successfully listening on port 9092
+[2026-07-17 03:01:55] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:01:55] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:01:58] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:01:58] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:02:01] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:02:01] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:02:04] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:02:04] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:02:07] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:02:07] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:02:10] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:02:10] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:02:13] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:02:13] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:02:15] [SUCCESS] Socket successfully listening on port 9095
+[2026-07-17 03:02:15] [SUCCESS] Connected successfully to 172.17.0.1:8080
+[2026-07-17 03:02:15] [SUCCESS] Registered Storage Server #3 from 10.1.50.173
+[2026-07-17 03:02:15] [SUCCESS] Registration confirmation complete: Registration optimization tracking live.
+[2026-07-17 03:02:15] [SUCCESS] Socket successfully listening on port 9094
+[2026-07-17 03:02:16] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:02:16] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:02:16] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:02:19] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:02:19] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:02:19] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:02:22] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:02:22] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:02:22] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:02:25] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:02:25] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:02:25] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:02:28] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:02:28] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:02:28] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:02:31] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:02:31] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:02:31] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:02:34] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:02:34] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:02:34] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:02:37] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:02:37] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:02:37] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:02:40] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:02:40] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:02:40] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:02:43] [SUCCESS] Connected successfully to 172.17.0.1:8080
+[2026-07-17 03:02:43] [SUCCESS] Accessible Paths in Cluster:
+--- SS #0 (10.1.50.173:9091) ---
+  - primary_file.txt
+--- SS #1 (10.1.50.173:9093) ---
+  - dummy1.txt
+--- SS #2 (10.1.50.173:9095) ---
+  - dummy2.txt
+
+[2026-07-17 03:02:43] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:02:43] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:02:43] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:02:46] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:02:46] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:02:46] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:02:49] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:02:49] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:02:49] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:02:52] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:02:52] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:02:52] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:02:55] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:02:55] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:02:55] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:02:56] [INFO] Forwarding directory request transaction down to Naming Server...
+[2026-07-17 03:02:56] [SUCCESS] Connected successfully to 172.17.0.1:8080
+[2026-07-17 03:02:56] [INFO] Initial ACK received from Naming Server. Processing operation.
+[2026-07-17 03:02:56] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:02:56] [SUCCESS] Executed CREATE command for resource: new_templated_file.txt
+[2026-07-17 03:02:56] [SUCCESS] Command execution confirmed: Empty file created successfully.
+[2026-07-17 03:02:58] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:02:58] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:02:58] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:03:01] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:03:01] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:03:01] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:03:04] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:03:04] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:03:04] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:03:07] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:03:07] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:03:07] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:03:10] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:03:10] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:03:10] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:03:11] [INFO] Querying Naming Server at 172.17.0.1:8080 for path route: primary_file.txt
+[2026-07-17 03:03:11] [SUCCESS] Connected successfully to 172.17.0.1:8080
+[2026-07-17 03:03:11] [INFO] Cache MISS! Traversing Trie for 'primary_file.txt'.
+[2026-07-17 03:03:11] [INFO] Initial ACK received from Naming Server. Request queued.
+[2026-07-17 03:03:11] [SUCCESS] Path resolved to Storage Server at 10.1.50.173:9091
+[2026-07-17 03:03:11] [SUCCESS] Connected successfully to 10.1.50.173:9091
+[2026-07-17 03:03:11] [INFO] Processing data retrieval request for file: primary_file.txt
+[2026-07-17 03:03:11] [SUCCESS] Data streaming for file [primary_file.txt] completed successfully.
+[2026-07-17 03:03:11] [SUCCESS] Data session terminated successfully.
+[2026-07-17 03:03:11] [INFO] Querying Naming Server at 172.17.0.1:8080 for path route: primary_file.txt
+[2026-07-17 03:03:11] [SUCCESS] Connected successfully to 172.17.0.1:8080
+[2026-07-17 03:03:11] [INFO] Initial ACK received from Naming Server. Request queued.
+[2026-07-17 03:03:11] [INFO] Cache HIT! Route for 'primary_file.txt' resolved in O(1) time.
+[2026-07-17 03:03:11] [SUCCESS] Path resolved to Storage Server at 10.1.50.173:9091
+[2026-07-17 03:03:11] [SUCCESS] Connected successfully to 10.1.50.173:9091
+[2026-07-17 03:03:11] [INFO] Processing data retrieval request for file: primary_file.txt
+[2026-07-17 03:03:11] [SUCCESS] Data streaming for file [primary_file.txt] completed successfully.
+[2026-07-17 03:03:11] [SUCCESS] Data session terminated successfully.
+[2026-07-17 03:03:13] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:03:13] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:03:13] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:03:16] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:03:16] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:03:16] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:03:19] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:03:19] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:03:19] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:03:22] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:03:22] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:03:22] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:03:25] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:03:25] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:03:25] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:03:28] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:03:28] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:03:28] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:03:31] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:03:31] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:03:31] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:03:34] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:03:34] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:03:34] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:03:37] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:03:37] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:03:37] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:03:40] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:03:40] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:03:40] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:03:43] [INFO] Querying Naming Server at 172.17.0.1:8080 for WRITE path route: primary_file.txt
+[2026-07-17 03:03:43] [INFO] Querying Naming Server at 172.17.0.1:8080 for path route: primary_file.txt
+[2026-07-17 03:03:43] [SUCCESS] Connected successfully to 172.17.0.1:8080
+[2026-07-17 03:03:43] [SUCCESS] Connected successfully to 172.17.0.1:8080
+[2026-07-17 03:03:43] [INFO] Initial ACK received from Naming Server. Write request queued.
+[2026-07-17 03:03:43] [INFO] Cache HIT! Route for 'primary_file.txt' resolved in O(1) time.
+[2026-07-17 03:03:43] [INFO] Initial ACK received from Naming Server. Request queued.
+[2026-07-17 03:03:43] [INFO] Cache HIT! Route for 'primary_file.txt' resolved in O(1) time.
+[2026-07-17 03:03:43] [SUCCESS] Write path resolved to Storage Server at 10.1.50.173:9091
+[2026-07-17 03:03:43] [SUCCESS] Path resolved to Storage Server at 10.1.50.173:9091
+[2026-07-17 03:03:43] [SUCCESS] Connected successfully to 10.1.50.173:9091
+[2026-07-17 03:03:43] [SUCCESS] Connected successfully to 10.1.50.173:9091
+[2026-07-17 03:03:43] [INFO] Executing baseline synchronous WRITE operation on file: primary_file.txt
+[2026-07-17 03:03:43] [INFO] Processing data retrieval request for file: primary_file.txt
+[2026-07-17 03:03:43] [SUCCESS] Data streaming for file [primary_file.txt] completed successfully.
+[2026-07-17 03:03:43] [SUCCESS] Synchronous write completed for path: primary_file.txt
+[2026-07-17 03:03:43] [SUCCESS] Data session terminated successfully.
+[2026-07-17 03:03:43] [SUCCESS] Server Response: Successfully wrote 15 bytes synchronously to storage disk.
+[2026-07-17 03:03:43] [SUCCESS] Connected successfully to 172.17.0.1:8080
+[2026-07-17 03:03:43] [SUCCESS] Cleared exclusive WRITE lock on path: primary_file.txt
+[2026-07-17 03:03:43] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:03:43] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:03:43] [INFO] Async replication triggered to SS #2 for path: primary_file.txt
+[2026-07-17 03:03:43] [INFO] Async replication triggered to SS #1 for path: primary_file.txt
+[2026-07-17 03:03:43] [INFO] Executing Cross-SS COPY from 10.1.50.173:9091 (Path: primary_file.txt) to local path: primary_file.txt
+[2026-07-17 03:03:43] [INFO] Executing Cross-SS COPY from 10.1.50.173:9091 (Path: primary_file.txt) to local path: primary_file.txt
+[2026-07-17 03:03:43] [SUCCESS] Connected successfully to 10.1.50.173:9091
+[2026-07-17 03:03:43] [SUCCESS] Connected successfully to 10.1.50.173:9091
+[2026-07-17 03:03:43] [INFO] Processing data retrieval request for file: primary_file.txt
+[2026-07-17 03:03:43] [INFO] Processing data retrieval request for file: primary_file.txt
+[2026-07-17 03:03:43] [SUCCESS] Data streaming for file [primary_file.txt] completed successfully.
+[2026-07-17 03:03:43] [SUCCESS] Data streaming for file [primary_file.txt] completed successfully.
+[2026-07-17 03:03:43] [SUCCESS] COPY complete for local resource: primary_file.txt
+[2026-07-17 03:03:43] [SUCCESS] COPY complete for local resource: primary_file.txt
+[2026-07-17 03:03:43] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:03:43] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:03:43] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:03:46] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:03:46] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:03:46] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:03:49] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:03:49] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:03:49] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:03:52] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:03:52] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:03:52] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:03:55] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:03:55] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:03:55] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:03:58] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:03:58] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:03:58] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:04:01] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:04:01] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:04:01] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:04:04] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:04:04] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:04:04] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:04:07] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:04:07] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:04:07] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:04:10] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:04:10] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:04:10] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:04:13] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:04:13] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:04:13] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:04:16] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:04:16] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:04:16] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:04:18] [INFO] Querying Naming Server at 172.17.0.1:8080 for WRITE path route: primary_file.txt
+[2026-07-17 03:04:18] [INFO] Querying Naming Server at 172.17.0.1:8080 for path route: primary_file.txt
+[2026-07-17 03:04:18] [SUCCESS] Connected successfully to 172.17.0.1:8080
+[2026-07-17 03:04:18] [SUCCESS] Connected successfully to 172.17.0.1:8080
+[2026-07-17 03:04:18] [INFO] Initial ACK received from Naming Server. Write request queued.
+[2026-07-17 03:04:18] [INFO] Cache HIT! Route for 'primary_file.txt' resolved in O(1) time.
+[2026-07-17 03:04:18] [INFO] Cache HIT! Route for 'primary_file.txt' resolved in O(1) time.
+[2026-07-17 03:04:18] [SUCCESS] Write path resolved to Storage Server at 10.1.50.173:9091
+[2026-07-17 03:04:18] [INFO] Initial ACK received from Naming Server. Request queued.
+[2026-07-17 03:04:18] [SUCCESS] Connected successfully to 10.1.50.173:9091
+[2026-07-17 03:04:18] [SUCCESS] Path resolved to Storage Server at 10.1.50.173:9091
+[2026-07-17 03:04:18] [INFO] Executing baseline synchronous WRITE operation on file: primary_file.txt
+[2026-07-17 03:04:18] [SUCCESS] Connected successfully to 10.1.50.173:9091
+[2026-07-17 03:04:18] [INFO] Processing data retrieval request for file: primary_file.txt
+[2026-07-17 03:04:18] [SUCCESS] Synchronous write completed for path: primary_file.txt
+[2026-07-17 03:04:18] [SUCCESS] Data streaming for file [primary_file.txt] completed successfully.
+[2026-07-17 03:04:18] [SUCCESS] Data session terminated successfully.
+[2026-07-17 03:04:18] [SUCCESS] Server Response: Successfully wrote 15 bytes synchronously to storage disk.
+[2026-07-17 03:04:18] [SUCCESS] Connected successfully to 172.17.0.1:8080
+[2026-07-17 03:04:18] [SUCCESS] Cleared exclusive WRITE lock on path: primary_file.txt
+[2026-07-17 03:04:18] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:04:18] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:04:18] [INFO] Async replication triggered to SS #2 for path: primary_file.txt
+[2026-07-17 03:04:18] [INFO] Executing Cross-SS COPY from 10.1.50.173:9091 (Path: primary_file.txt) to local path: primary_file.txt
+[2026-07-17 03:04:18] [INFO] Async replication triggered to SS #1 for path: primary_file.txt
+[2026-07-17 03:04:18] [INFO] Executing Cross-SS COPY from 10.1.50.173:9091 (Path: primary_file.txt) to local path: primary_file.txt
+[2026-07-17 03:04:18] [SUCCESS] Connected successfully to 10.1.50.173:9091
+[2026-07-17 03:04:18] [SUCCESS] Connected successfully to 10.1.50.173:9091
+[2026-07-17 03:04:18] [INFO] Processing data retrieval request for file: primary_file.txt
+[2026-07-17 03:04:18] [INFO] Processing data retrieval request for file: primary_file.txt
+[2026-07-17 03:04:18] [SUCCESS] Data streaming for file [primary_file.txt] completed successfully.
+[2026-07-17 03:04:18] [SUCCESS] Data streaming for file [primary_file.txt] completed successfully.
+[2026-07-17 03:04:18] [SUCCESS] COPY complete for local resource: primary_file.txt
+[2026-07-17 03:04:18] [SUCCESS] COPY complete for local resource: primary_file.txt
+[2026-07-17 03:04:19] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:04:19] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:04:19] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:04:22] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:04:22] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:04:22] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:04:25] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:04:25] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:04:25] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:04:28] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:04:28] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:04:28] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:04:31] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:04:31] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:04:31] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:04:34] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:04:34] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:04:34] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:04:37] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:04:37] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:04:37] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:04:40] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:04:40] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:04:40] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:04:43] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:04:43] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:04:43] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:04:46] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:04:46] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:04:46] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:04:49] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:04:49] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:04:49] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:04:52] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:04:52] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:04:52] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:04:55] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:04:55] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:04:55] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:04:58] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:04:58] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:04:58] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:05:01] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:05:01] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:05:01] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:05:04] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:05:04] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:05:04] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:05:07] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:05:07] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:05:07] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:05:10] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:05:10] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:05:10] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:05:13] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:05:13] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:05:13] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:05:16] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:05:16] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:05:16] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:05:19] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:05:19] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:05:19] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:05:22] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:05:22] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:05:22] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:05:25] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:05:25] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:05:25] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:05:28] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:05:28] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:05:28] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:05:31] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:05:31] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:05:31] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:05:34] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:05:34] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:05:34] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:05:37] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:05:37] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:05:37] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:05:40] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:05:40] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:05:40] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:05:43] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:05:43] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:05:43] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:05:46] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:05:46] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:05:46] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:05:49] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:05:49] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:05:49] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:05:52] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:05:52] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:05:52] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:05:55] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:05:55] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:05:55] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:05:58] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:05:58] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:05:58] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:06:01] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:06:01] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:06:01] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:06:04] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:06:04] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:06:04] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:06:07] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:06:07] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:06:07] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:06:10] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:06:10] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:06:10] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:06:13] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:06:13] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:06:13] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:06:16] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:06:16] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:06:16] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:06:19] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:06:19] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:06:19] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:06:22] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:06:22] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:06:22] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:06:25] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:06:25] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:06:25] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:06:28] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:06:28] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:06:28] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:06:31] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:06:31] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:06:31] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:06:34] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:06:34] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:06:34] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:06:37] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:06:37] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:06:37] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:06:40] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:06:40] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:06:40] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:06:43] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:06:43] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:06:43] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:06:46] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:06:46] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:06:46] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:06:49] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:06:49] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:06:49] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:06:52] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:06:52] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:06:52] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:06:55] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:06:55] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:06:55] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:06:58] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:06:58] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:06:58] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:07:01] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:07:01] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:07:01] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:07:04] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:07:04] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:07:04] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:07:07] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:07:07] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:07:07] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:07:10] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:07:10] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:07:10] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:07:13] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:07:13] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:07:13] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:07:16] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:07:16] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:07:16] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:07:19] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:07:19] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:07:19] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:07:22] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:07:22] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:07:22] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:07:25] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:07:25] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:07:25] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:07:28] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:07:28] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:07:28] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:07:31] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:07:31] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:07:31] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:07:34] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:07:34] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:07:34] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:07:37] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:07:37] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:07:37] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:07:40] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:07:40] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:07:40] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:07:43] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:07:43] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:07:43] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:07:46] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:07:46] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:07:46] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:08:21] [INFO] Initializing Async Non-Blocking Naming Server Core...
+[2026-07-17 03:08:21] [SUCCESS] Socket successfully listening on port 8080
+[2026-07-17 03:08:21] [SUCCESS] Naming Server online [IP: 10.1.50.173, Port: 8080]...
+[2026-07-17 03:08:25] [SUCCESS] Socket successfully listening on port 9091
+[2026-07-17 03:08:25] [SUCCESS] Connected successfully to 172.17.0.1:8080
+[2026-07-17 03:08:25] [SUCCESS] Registered Storage Server #1 from 10.1.50.173
+[2026-07-17 03:08:25] [SUCCESS] Registration confirmation complete: Registration optimization tracking live.
+[2026-07-17 03:08:25] [SUCCESS] Socket successfully listening on port 9090
+[2026-07-17 03:08:27] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:08:28] [SUCCESS] Socket successfully listening on port 9093
+[2026-07-17 03:08:28] [SUCCESS] Connected successfully to 172.17.0.1:8080
+[2026-07-17 03:08:28] [SUCCESS] Registered Storage Server #2 from 10.1.50.173
+[2026-07-17 03:08:28] [SUCCESS] Registration confirmation complete: Registration optimization tracking live.
+[2026-07-17 03:08:28] [SUCCESS] Socket successfully listening on port 9092
+[2026-07-17 03:08:30] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:08:30] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:08:31] [SUCCESS] Socket successfully listening on port 9095
+[2026-07-17 03:08:31] [SUCCESS] Connected successfully to 172.17.0.1:8080
+[2026-07-17 03:08:31] [SUCCESS] Registered Storage Server #3 from 10.1.50.173
+[2026-07-17 03:08:31] [SUCCESS] Registration confirmation complete: Registration optimization tracking live.
+[2026-07-17 03:08:31] [SUCCESS] Socket successfully listening on port 9094
+[2026-07-17 03:08:33] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:08:33] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:08:33] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:08:36] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:08:36] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:08:36] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:08:39] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:08:39] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:08:39] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:08:42] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:08:42] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:08:42] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:08:45] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:08:45] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:08:45] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:08:48] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:08:48] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:08:48] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:08:51] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:08:51] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:08:51] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:08:54] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:08:54] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:08:54] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:08:57] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:08:57] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:08:57] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:09:00] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:09:00] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:09:00] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:09:01] [INFO] Forwarding directory request transaction down to Naming Server...
+[2026-07-17 03:09:01] [SUCCESS] Connected successfully to 172.17.0.1:8080
+[2026-07-17 03:09:01] [INFO] Initial ACK received from Naming Server. Processing operation.
+[2026-07-17 03:09:01] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:09:01] [SUCCESS] Executed CREATE command for resource: new_templated_file.txt
+[2026-07-17 03:09:01] [SUCCESS] Command execution confirmed: Empty file created successfully.
+[2026-07-17 03:09:03] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:09:03] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:09:03] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:09:06] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:09:06] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:09:06] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:09:08] [INFO] Querying Naming Server at 172.17.0.1:8080 for path route: primary_file.txt
+[2026-07-17 03:09:08] [SUCCESS] Connected successfully to 172.17.0.1:8080
+[2026-07-17 03:09:08] [INFO] Initial ACK received from Naming Server. Request queued.
+[2026-07-17 03:09:08] [INFO] Cache MISS! Traversing Trie for 'primary_file.txt'.
+[2026-07-17 03:09:08] [SUCCESS] Path resolved to Storage Server at 10.1.50.173:9091
+[2026-07-17 03:09:08] [SUCCESS] Connected successfully to 10.1.50.173:9091
+[2026-07-17 03:09:08] [INFO] Processing data retrieval request for file: primary_file.txt
+[2026-07-17 03:09:08] [SUCCESS] Data streaming for file [primary_file.txt] completed successfully.
+[2026-07-17 03:09:08] [SUCCESS] Data session terminated successfully.
+[2026-07-17 03:09:08] [INFO] Querying Naming Server at 172.17.0.1:8080 for path route: primary_file.txt
+[2026-07-17 03:09:08] [SUCCESS] Connected successfully to 172.17.0.1:8080
+[2026-07-17 03:09:08] [INFO] Initial ACK received from Naming Server. Request queued.
+[2026-07-17 03:09:08] [INFO] Cache HIT! Route for 'primary_file.txt' resolved in O(1) time.
+[2026-07-17 03:09:08] [SUCCESS] Path resolved to Storage Server at 10.1.50.173:9091
+[2026-07-17 03:09:08] [SUCCESS] Connected successfully to 10.1.50.173:9091
+[2026-07-17 03:09:08] [INFO] Processing data retrieval request for file: primary_file.txt
+[2026-07-17 03:09:08] [SUCCESS] Data streaming for file [primary_file.txt] completed successfully.
+[2026-07-17 03:09:08] [SUCCESS] Data session terminated successfully.
+[2026-07-17 03:09:09] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:09:09] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:09:09] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:09:12] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:09:12] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:09:12] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:09:15] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:09:15] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:09:15] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:09:18] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:09:18] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:09:18] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:09:21] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:09:21] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:09:21] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:09:24] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:09:24] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:09:24] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:09:27] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:09:27] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:09:27] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:09:30] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:09:30] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:09:30] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:09:30] [INFO] Querying Naming Server at 172.17.0.1:8080 for WRITE path route: primary_file.txt
+[2026-07-17 03:09:30] [INFO] Querying Naming Server at 172.17.0.1:8080 for path route: primary_file.txt
+[2026-07-17 03:09:30] [SUCCESS] Connected successfully to 172.17.0.1:8080
+[2026-07-17 03:09:30] [SUCCESS] Connected successfully to 172.17.0.1:8080
+[2026-07-17 03:09:30] [INFO] Cache HIT! Route for 'primary_file.txt' resolved in O(1) time.
+[2026-07-17 03:09:30] [INFO] Initial ACK received from Naming Server. Write request queued.
+[2026-07-17 03:09:30] [INFO] Cache HIT! Route for 'primary_file.txt' resolved in O(1) time.
+[2026-07-17 03:09:30] [INFO] Initial ACK received from Naming Server. Request queued.
+[2026-07-17 03:09:30] [SUCCESS] Path resolved to Storage Server at 10.1.50.173:9091
+[2026-07-17 03:09:30] [SUCCESS] Write path resolved to Storage Server at 10.1.50.173:9091
+[2026-07-17 03:09:30] [SUCCESS] Connected successfully to 10.1.50.173:9091
+[2026-07-17 03:09:30] [SUCCESS] Connected successfully to 10.1.50.173:9091
+[2026-07-17 03:09:30] [INFO] Processing data retrieval request for file: primary_file.txt
+[2026-07-17 03:09:30] [INFO] Executing baseline synchronous WRITE operation on file: primary_file.txt
+[2026-07-17 03:09:30] [SUCCESS] Data streaming for file [primary_file.txt] completed successfully.
+[2026-07-17 03:09:30] [SUCCESS] Synchronous write completed for path: primary_file.txt
+[2026-07-17 03:09:30] [SUCCESS] Server Response: Successfully wrote 15 bytes synchronously to storage disk.
+[2026-07-17 03:09:30] [SUCCESS] Connected successfully to 172.17.0.1:8080
+[2026-07-17 03:09:30] [SUCCESS] Cleared exclusive WRITE lock on path: primary_file.txt
+[2026-07-17 03:09:30] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:09:30] [INFO] Async replication triggered to SS #1 for path: primary_file.txt
+[2026-07-17 03:09:30] [INFO] Executing Cross-SS COPY from 10.1.50.173:9091 (Path: primary_file.txt) to local path: primary_file.txt
+[2026-07-17 03:09:30] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:09:30] [INFO] Async replication triggered to SS #2 for path: primary_file.txt
+[2026-07-17 03:09:30] [SUCCESS] Connected successfully to 10.1.50.173:9091
+[2026-07-17 03:09:30] [INFO] Executing Cross-SS COPY from 10.1.50.173:9091 (Path: primary_file.txt) to local path: primary_file.txt
+[2026-07-17 03:09:30] [SUCCESS] Connected successfully to 10.1.50.173:9091
+[2026-07-17 03:09:30] [SUCCESS] Data session terminated successfully.
+[2026-07-17 03:09:30] [INFO] Processing data retrieval request for file: primary_file.txt
+[2026-07-17 03:09:30] [INFO] Processing data retrieval request for file: primary_file.txt
+[2026-07-17 03:09:30] [SUCCESS] Data streaming for file [primary_file.txt] completed successfully.
+[2026-07-17 03:09:30] [SUCCESS] Data streaming for file [primary_file.txt] completed successfully.
+[2026-07-17 03:09:31] [SUCCESS] COPY complete for local resource: primary_file.txt
+[2026-07-17 03:09:31] [SUCCESS] COPY complete for local resource: primary_file.txt
+[2026-07-17 03:09:33] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:09:33] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:09:33] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:09:36] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:09:36] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:09:36] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:09:39] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:09:39] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:09:39] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:09:42] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:09:42] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:09:42] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:09:45] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:09:45] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:09:45] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:09:48] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:09:48] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:09:48] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:09:51] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:09:51] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:09:51] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:09:54] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:09:54] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:09:54] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:09:57] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:09:57] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:09:57] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:10:00] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:10:00] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:10:00] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:10:03] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:10:03] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:10:03] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:10:06] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:10:06] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:10:06] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:10:09] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:10:09] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:10:09] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:10:12] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:10:12] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:10:12] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:10:15] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:10:15] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:10:15] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:10:18] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:10:18] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:10:18] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:10:21] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:10:21] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:10:21] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:10:24] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:10:24] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:10:24] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:10:27] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:10:27] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:10:27] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:10:30] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:10:30] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:10:30] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:10:33] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:10:33] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:10:33] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:10:36] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:10:36] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:10:36] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:10:39] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:10:39] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:10:39] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:10:42] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:10:42] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:10:42] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:10:45] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:10:45] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:10:45] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:10:48] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:10:48] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:10:48] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:10:51] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:10:51] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:10:51] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:10:54] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:10:54] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:10:54] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:10:57] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:10:57] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:10:57] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:11:00] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:11:00] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:11:00] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:11:03] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:11:03] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:11:03] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:11:06] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:11:06] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:11:06] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:11:09] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:11:09] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:11:09] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:11:12] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:11:12] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:11:12] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:11:15] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:11:15] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:11:15] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:11:18] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:11:18] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:11:18] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:11:21] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:11:21] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:11:21] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:11:24] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:11:24] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:11:24] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:11:27] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:11:27] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:11:27] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:11:30] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:11:30] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:11:30] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:11:33] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:11:33] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:11:33] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:11:36] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:11:36] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:11:36] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:11:39] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:11:39] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:11:39] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:11:42] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:11:42] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:11:42] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:11:45] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:11:45] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:11:45] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:11:48] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:11:48] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:11:48] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:11:51] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:11:51] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:11:51] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:11:54] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:11:54] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:11:54] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:11:57] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:11:57] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:11:57] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:12:00] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:12:00] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:12:00] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:12:03] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:12:03] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:12:03] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:12:06] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:12:06] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:12:06] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:12:09] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:12:09] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:12:09] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:12:12] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:12:12] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:12:12] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:12:15] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:12:15] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:12:15] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:12:18] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:12:18] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:12:18] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:12:21] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:12:21] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:12:21] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:12:24] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:12:24] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:12:24] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:12:27] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:12:27] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:12:27] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:12:30] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:12:30] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:12:30] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:12:33] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:12:33] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:12:33] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:12:36] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:12:36] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:12:36] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:12:39] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:12:39] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:12:39] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:12:42] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:12:42] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:12:42] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:12:45] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:12:45] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:12:45] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:12:48] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:12:48] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:12:48] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:12:51] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:12:51] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:12:51] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:12:54] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:12:54] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:12:54] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:12:57] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:12:57] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:12:57] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:13:00] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:13:00] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:13:00] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:13:03] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:13:03] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:13:03] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:13:06] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:13:06] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:13:06] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:13:09] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:13:09] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:13:09] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:13:12] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:13:12] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:13:12] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:13:15] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:13:15] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:13:15] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:13:18] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:13:18] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:13:18] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:13:21] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:13:21] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:13:21] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:13:24] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:13:24] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:13:24] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:13:27] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:13:27] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:13:27] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:13:30] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:13:30] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:13:30] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:13:33] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:13:33] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:13:33] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:13:36] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:13:36] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:13:36] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:13:39] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:13:39] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:13:39] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:13:42] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:13:42] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:13:42] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:13:45] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:13:45] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:13:45] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:13:48] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:13:48] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:13:48] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:13:51] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:13:51] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:13:51] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:13:54] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:13:54] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:13:54] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:13:57] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:13:57] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:13:57] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:14:00] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:14:00] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:14:00] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:14:03] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:14:03] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:14:03] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:14:06] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:14:06] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:14:06] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:14:09] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:14:09] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:14:09] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:14:12] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:14:12] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:14:12] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:14:15] [INFO] Querying Naming Server at 172.17.0.1:8080 for path route: primary_file.txt
+[2026-07-17 03:14:15] [INFO] Querying Naming Server at 172.17.0.1:8080 for WRITE path route: primary_file.txt
+[2026-07-17 03:14:15] [SUCCESS] Connected successfully to 172.17.0.1:8080
+[2026-07-17 03:14:15] [SUCCESS] Connected successfully to 172.17.0.1:8080
+[2026-07-17 03:14:15] [INFO] Initial ACK received from Naming Server. Write request queued.
+[2026-07-17 03:14:15] [INFO] Cache HIT! Route for 'primary_file.txt' resolved in O(1) time.
+[2026-07-17 03:14:15] [SUCCESS] Write path resolved to Storage Server at 10.1.50.173:9091
+[2026-07-17 03:14:15] [SUCCESS] Connected successfully to 10.1.50.173:9091
+[2026-07-17 03:14:15] [INFO] Executing baseline synchronous WRITE operation on file: primary_file.txt
+[2026-07-17 03:14:15] [INFO] Initial ACK received from Naming Server. Request queued.
+[2026-07-17 03:14:15] [INFO] Cache HIT! Route for 'primary_file.txt' resolved in O(1) time.
+[2026-07-17 03:14:15] [SUCCESS] Synchronous write completed for path: primary_file.txt
+[2026-07-17 03:14:15] [ERROR] Path resolution rejected by Naming Server. Error Code: 2
+[2026-07-17 03:14:15] [SUCCESS] Server Response: Successfully wrote 15 bytes synchronously to storage disk.
+[2026-07-17 03:14:15] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:14:15] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:14:15] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:14:18] [SUCCESS] Connected successfully to 172.17.0.1:8080
+[2026-07-17 03:14:18] [SUCCESS] Cleared exclusive WRITE lock on path: primary_file.txt
+[2026-07-17 03:14:18] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:14:18] [INFO] Executing Cross-SS COPY from 10.1.50.173:9091 (Path: primary_file.txt) to local path: primary_file.txt
+[2026-07-17 03:14:18] [INFO] Async replication triggered to SS #1 for path: primary_file.txt
+[2026-07-17 03:14:18] [SUCCESS] Connected successfully to 10.1.50.173:9091
+[2026-07-17 03:14:18] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:14:18] [INFO] Async replication triggered to SS #2 for path: primary_file.txt
+[2026-07-17 03:14:18] [INFO] Executing Cross-SS COPY from 10.1.50.173:9091 (Path: primary_file.txt) to local path: primary_file.txt
+[2026-07-17 03:14:18] [INFO] Processing data retrieval request for file: primary_file.txt
+[2026-07-17 03:14:18] [SUCCESS] Data streaming for file [primary_file.txt] completed successfully.
+[2026-07-17 03:14:18] [SUCCESS] COPY complete for local resource: primary_file.txt
+[2026-07-17 03:14:18] [SUCCESS] Connected successfully to 10.1.50.173:9091
+[2026-07-17 03:14:18] [INFO] Processing data retrieval request for file: primary_file.txt
+[2026-07-17 03:14:18] [SUCCESS] Data streaming for file [primary_file.txt] completed successfully.
+[2026-07-17 03:14:18] [SUCCESS] COPY complete for local resource: primary_file.txt
+[2026-07-17 03:14:18] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:14:18] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:14:18] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:14:21] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:14:21] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:14:21] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:14:24] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:14:24] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:14:24] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:14:27] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:14:27] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:14:27] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:14:30] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:14:30] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:14:30] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:14:33] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:14:33] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:14:33] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:14:36] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:14:36] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:14:36] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:14:39] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:14:39] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:14:39] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:14:42] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:14:42] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:14:42] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:14:45] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:14:45] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:14:45] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:14:48] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:14:48] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:14:48] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:14:51] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:14:51] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:14:51] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:14:54] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:14:54] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:14:54] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:14:57] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:14:57] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:14:57] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:14:59] [INFO] Querying Naming Server at 172.17.0.1:8080 for WRITE path route: new_templated_file.txt
+[2026-07-17 03:14:59] [SUCCESS] Connected successfully to 172.17.0.1:8080
+[2026-07-17 03:14:59] [INFO] Cache MISS! Traversing Trie for 'new_templated_file.txt'.
+[2026-07-17 03:14:59] [INFO] Initial ACK received from Naming Server. Write request queued.
+[2026-07-17 03:14:59] [SUCCESS] Write path resolved to Storage Server at 10.1.50.173:9091
+[2026-07-17 03:14:59] [SUCCESS] Connected successfully to 10.1.50.173:9091
+[2026-07-17 03:14:59] [INFO] Queueing ASYNC write task to memory buffer for path: new_templated_file.txt
+[2026-07-17 03:14:59] [SUCCESS] Server Response: Async task queued successfully. Tracking ID: 3
+[2026-07-17 03:14:59] [INFO] Operation queued asynchronously. Query using: ./client 172.17.0.1 8080 STATUS 3
+[2026-07-17 03:14:59] [INFO] Background thread flushing 31 bytes to new_templated_file.txt...
+[2026-07-17 03:14:59] [SUCCESS] Async flush complete for path: new_templated_file.txt
+[2026-07-17 03:14:59] [SUCCESS] Connected successfully to 172.17.0.1:8080
+[2026-07-17 03:14:59] [SUCCESS] Async task 3 officially marked COMPLETED.
+[2026-07-17 03:14:59] [SUCCESS] Cleared exclusive WRITE lock on path: new_templated_file.txt
+[2026-07-17 03:14:59] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:14:59] [SUCCESS] Confirmed Naming Server logged completion for Task ID: 3
+[2026-07-17 03:14:59] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:14:59] [INFO] Async replication triggered to SS #2 for path: new_templated_file.txt
+[2026-07-17 03:14:59] [INFO] Async replication triggered to SS #1 for path: new_templated_file.txt
+[2026-07-17 03:14:59] [INFO] Executing Cross-SS COPY from 10.1.50.173:9091 (Path: new_templated_file.txt) to local path: new_templated_file.txt
+[2026-07-17 03:14:59] [SUCCESS] Connected successfully to 10.1.50.173:9091
+[2026-07-17 03:14:59] [INFO] Processing data retrieval request for file: new_templated_file.txt
+[2026-07-17 03:14:59] [SUCCESS] Data streaming for file [new_templated_file.txt] completed successfully.
+[2026-07-17 03:14:59] [INFO] Executing Cross-SS COPY from 10.1.50.173:9091 (Path: new_templated_file.txt) to local path: new_templated_file.txt
+[2026-07-17 03:14:59] [SUCCESS] Connected successfully to 10.1.50.173:9091
+[2026-07-17 03:14:59] [INFO] Processing data retrieval request for file: new_templated_file.txt
+[2026-07-17 03:14:59] [SUCCESS] Data streaming for file [new_templated_file.txt] completed successfully.
+[2026-07-17 03:14:59] [SUCCESS] COPY complete for local resource: new_templated_file.txt
+[2026-07-17 03:14:59] [SUCCESS] COPY complete for local resource: new_templated_file.txt
+[2026-07-17 03:15:00] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:15:00] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:15:00] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:15:03] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:15:03] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:15:03] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:15:06] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:15:06] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:15:06] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:15:09] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:15:09] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:15:09] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:15:10] [INFO] Querying Naming Server at 172.17.0.1:8080 for WRITE path route: new_templated_file.txt
+[2026-07-17 03:15:10] [SUCCESS] Connected successfully to 172.17.0.1:8080
+[2026-07-17 03:15:10] [INFO] Initial ACK received from Naming Server. Write request queued.
+[2026-07-17 03:15:10] [INFO] Cache HIT! Route for 'new_templated_file.txt' resolved in O(1) time.
+[2026-07-17 03:15:10] [SUCCESS] Write path resolved to Storage Server at 10.1.50.173:9091
+[2026-07-17 03:15:10] [SUCCESS] Connected successfully to 10.1.50.173:9091
+[2026-07-17 03:15:10] [INFO] Queueing ASYNC write task to memory buffer for path: new_templated_file.txt
+[2026-07-17 03:15:10] [INFO] Background thread flushing 31 bytes to new_templated_file.txt...
+[2026-07-17 03:15:10] [SUCCESS] Server Response: Async task queued successfully. Tracking ID: 4
+[2026-07-17 03:15:10] [INFO] Operation queued asynchronously. Query using: ./client 172.17.0.1 8080 STATUS 4
+[2026-07-17 03:15:10] [SUCCESS] Async flush complete for path: new_templated_file.txt
+[2026-07-17 03:15:10] [SUCCESS] Connected successfully to 172.17.0.1:8080
+[2026-07-17 03:15:10] [SUCCESS] Async task 4 officially marked COMPLETED.
+[2026-07-17 03:15:10] [SUCCESS] Cleared exclusive WRITE lock on path: new_templated_file.txt
+[2026-07-17 03:15:10] [SUCCESS] Confirmed Naming Server logged completion for Task ID: 4
+[2026-07-17 03:15:10] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:15:10] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:15:10] [INFO] Async replication triggered to SS #2 for path: new_templated_file.txt
+[2026-07-17 03:15:10] [INFO] Async replication triggered to SS #1 for path: new_templated_file.txt
+[2026-07-17 03:15:10] [INFO] Executing Cross-SS COPY from 10.1.50.173:9091 (Path: new_templated_file.txt) to local path: new_templated_file.txt
+[2026-07-17 03:15:10] [INFO] Executing Cross-SS COPY from 10.1.50.173:9091 (Path: new_templated_file.txt) to local path: new_templated_file.txt
+[2026-07-17 03:15:10] [SUCCESS] Connected successfully to 10.1.50.173:9091
+[2026-07-17 03:15:10] [SUCCESS] Connected successfully to 10.1.50.173:9091
+[2026-07-17 03:15:10] [INFO] Processing data retrieval request for file: new_templated_file.txt
+[2026-07-17 03:15:10] [SUCCESS] COPY complete for local resource: new_templated_file.txt
+[2026-07-17 03:15:10] [INFO] Processing data retrieval request for file: new_templated_file.txt
+[2026-07-17 03:15:10] [SUCCESS] Data streaming for file [new_templated_file.txt] completed successfully.
+[2026-07-17 03:15:10] [SUCCESS] Data streaming for file [new_templated_file.txt] completed successfully.
+[2026-07-17 03:15:10] [SUCCESS] COPY complete for local resource: new_templated_file.txt
+[2026-07-17 03:15:12] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:15:12] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:15:12] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:15:15] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:15:15] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:15:15] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:15:18] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:15:18] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:15:18] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:15:21] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:15:21] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:15:21] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:15:24] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:15:24] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:15:24] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:15:27] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:15:27] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:15:27] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:15:30] [SUCCESS] Connected successfully to 172.17.0.1:8080
+[2026-07-17 03:15:30] [INFO] Requesting cluster to copy 'primary_file.txt' to 'redundant_backup.txt'...
+[2026-07-17 03:15:30] [INFO] Initial ACK received. Cross-SS copy operation in progress...
+[2026-07-17 03:15:30] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:15:30] [INFO] Executing Cross-SS COPY from 10.1.50.173:9091 (Path: primary_file.txt) to local path: redundant_backup.txt
+[2026-07-17 03:15:30] [SUCCESS] Connected successfully to 10.1.50.173:9091
+[2026-07-17 03:15:30] [INFO] Processing data retrieval request for file: primary_file.txt
+[2026-07-17 03:15:30] [SUCCESS] Data streaming for file [primary_file.txt] completed successfully.
+[2026-07-17 03:15:30] [SUCCESS] COPY complete for local resource: redundant_backup.txt
+[2026-07-17 03:15:30] [SUCCESS] Command execution confirmed: Cross-SS copy transfer completed and saved to disk.
+[2026-07-17 03:15:30] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:15:30] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:15:30] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:15:33] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:15:33] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:15:33] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:15:36] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:15:36] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:15:36] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:15:39] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:15:39] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:15:39] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:15:42] [ERROR] Network connection failed to target node at 10.1.50.173:9090
+[2026-07-17 03:15:42] [ERROR] Heartbeat missed for Storage Server #0 (1/2)
+[2026-07-17 03:15:42] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:15:42] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:15:45] [ERROR] Network connection failed to target node at 10.1.50.173:9090
+[2026-07-17 03:15:45] [ERROR] Heartbeat missed for Storage Server #0 (2/2)
+[2026-07-17 03:15:45] [ERROR] Storage Server #0 declared DEAD after missed heartbeats.
+[2026-07-17 03:15:45] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:15:45] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:15:48] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:15:48] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:15:51] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:15:51] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:15:54] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:15:54] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:15:55] [INFO] Querying Naming Server at 172.17.0.1:8080 for path route: primary_file.txt
+[2026-07-17 03:15:55] [SUCCESS] Connected successfully to 172.17.0.1:8080
+[2026-07-17 03:15:55] [INFO] Initial ACK received from Naming Server. Request queued.
+[2026-07-17 03:15:55] [INFO] Cache HIT! Route for 'primary_file.txt' resolved in O(1) time.
+[2026-07-17 03:15:55] [INFO] Primary offline. Read failover to Replica SS #1
+[2026-07-17 03:15:55] [SUCCESS] Path resolved to Storage Server at 10.1.50.173:9093
+[2026-07-17 03:15:55] [SUCCESS] Connected successfully to 10.1.50.173:9093
+[2026-07-17 03:15:55] [INFO] Processing data retrieval request for file: primary_file.txt
+[2026-07-17 03:15:55] [SUCCESS] Data streaming for file [primary_file.txt] completed successfully.
+[2026-07-17 03:15:55] [SUCCESS] Data session terminated successfully.
+[2026-07-17 03:15:57] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:15:57] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:16:00] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:16:00] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:16:03] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:16:03] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:16:06] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:16:06] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:16:09] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:16:09] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:16:12] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:16:12] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:16:15] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:16:15] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:16:18] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:16:18] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:16:21] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:16:21] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:16:24] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:16:24] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:16:27] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:16:27] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:16:30] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:16:30] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:16:33] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:16:33] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:16:36] [SUCCESS] Socket successfully listening on port 9091
+[2026-07-17 03:16:36] [SUCCESS] Connected successfully to 172.17.0.1:8080
+[2026-07-17 03:16:36] [SUCCESS] Storage Server #0 (Port 9091) recovered back online! Reconciled with original Trie paths.
+[2026-07-17 03:16:36] [SUCCESS] Registration confirmation complete: Registration optimization tracking live.
+[2026-07-17 03:16:36] [SUCCESS] Socket successfully listening on port 9090
+[2026-07-17 03:16:36] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:16:36] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:16:36] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:16:39] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:16:39] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:16:39] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:16:42] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:16:42] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:16:42] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:16:45] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:16:45] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:16:45] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:16:48] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:16:48] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:16:48] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:16:51] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:16:51] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:16:51] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:16:54] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:16:54] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:16:54] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:16:57] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:16:57] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:16:57] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:17:00] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:17:00] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:17:00] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:17:03] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:17:03] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:17:03] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:17:06] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:17:06] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:17:06] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:17:09] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:17:09] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:17:09] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:17:12] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:17:12] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:17:12] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:17:15] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:17:15] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:17:15] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:17:18] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:17:18] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:17:18] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:17:21] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:17:21] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:17:21] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:17:24] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:17:24] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:17:24] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:17:27] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:17:27] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:17:27] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:17:30] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:17:30] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:17:30] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:17:33] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:17:33] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:17:33] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:17:36] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:17:36] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:17:36] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:17:39] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:17:39] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:17:39] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:17:42] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:17:42] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:17:42] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:17:45] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:17:45] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:17:45] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:17:48] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:17:48] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:17:48] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:17:51] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:17:51] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:17:51] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:17:54] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:17:54] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:17:54] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:17:57] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:17:57] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:17:57] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:18:00] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:18:00] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:18:00] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:18:03] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:18:03] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:18:03] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:18:06] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:18:06] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:18:06] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:18:09] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:18:09] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:18:09] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:18:12] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:18:12] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:18:12] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:18:15] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:18:15] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:18:15] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:18:18] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:18:18] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:18:18] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:18:21] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:18:21] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:18:21] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:18:24] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:18:24] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:18:24] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:18:27] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:18:27] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:18:27] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:18:30] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:18:30] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:18:30] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:18:33] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:18:33] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:18:33] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:18:36] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:18:36] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:18:36] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:18:39] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:18:39] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:18:39] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:18:42] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:18:42] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:18:42] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:18:45] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:18:45] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:18:45] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:18:48] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:18:48] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:18:48] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:18:51] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:18:51] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:18:51] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:18:54] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:18:54] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:18:54] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:18:57] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:18:57] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:18:57] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:19:00] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:19:00] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:19:00] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:19:03] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:19:03] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:19:03] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:19:06] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:19:06] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:19:06] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:19:09] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:19:09] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:19:09] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:19:12] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:19:12] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:19:12] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:19:15] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:19:15] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:19:15] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:19:18] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:19:18] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:19:18] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:19:21] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:19:21] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:19:21] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:19:24] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:19:24] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:19:24] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:19:27] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:19:27] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:19:27] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:19:30] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:19:30] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:19:30] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:19:33] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:19:33] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:19:33] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:19:36] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:19:36] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:19:36] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:19:39] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:19:39] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:19:39] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:19:42] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:19:42] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:19:42] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:19:45] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:19:45] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:19:45] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:19:48] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:19:48] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:19:48] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:19:51] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:19:51] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:19:51] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:19:54] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:19:54] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:19:54] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:19:57] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:19:57] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:19:57] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:20:00] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:20:00] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:20:00] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:20:03] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:20:03] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:20:03] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:20:06] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:20:06] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:20:06] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:20:09] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:20:09] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:20:09] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:20:12] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:20:12] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:20:12] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:20:15] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:20:15] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:20:15] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:20:18] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:20:18] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:20:18] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:20:21] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:20:21] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:20:21] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:20:24] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:20:24] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:20:24] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:20:27] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:20:27] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:20:27] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:20:30] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:20:30] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:20:30] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:20:33] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:20:33] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:20:33] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:20:36] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:20:36] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:20:36] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:20:39] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:20:39] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:20:39] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:20:43] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:20:43] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:20:43] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:20:46] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:20:46] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:20:46] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:20:49] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:20:49] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:20:49] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:20:52] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:20:52] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:20:52] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:20:55] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:20:55] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:20:55] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:20:58] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:20:58] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:20:58] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:21:01] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:21:01] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:21:01] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:21:04] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:21:04] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:21:04] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:21:07] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:21:07] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:21:07] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:21:10] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:21:10] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:21:10] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:21:13] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:21:13] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:21:13] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:21:16] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:21:16] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:21:16] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:21:19] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:21:19] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:21:19] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:21:22] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:21:22] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:21:22] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:21:25] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:21:25] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:21:25] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:21:28] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:21:28] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:21:28] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:21:31] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:21:31] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:21:31] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:21:34] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:21:34] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:21:34] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:21:37] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:21:37] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:21:37] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:21:40] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:21:40] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:21:40] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:21:43] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:21:43] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:21:43] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:21:46] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:21:46] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:21:46] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:21:49] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:21:49] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:21:49] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:21:52] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:21:52] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:21:52] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:21:55] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:21:55] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:21:55] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:21:58] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:21:58] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:21:58] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:22:01] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:22:01] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:22:01] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:22:04] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:22:04] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:22:04] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:22:07] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:22:07] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:22:07] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:22:10] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:22:10] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:22:10] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:22:13] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:22:13] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:22:13] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:22:16] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:22:16] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:22:16] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:22:19] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:22:19] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:22:19] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:22:22] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:22:22] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:22:22] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:22:25] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:22:25] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:22:25] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:22:28] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:22:28] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:22:28] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:22:31] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:22:31] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:22:31] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:22:34] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:22:34] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:22:34] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:22:37] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:22:37] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:22:37] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:22:40] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:22:40] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:22:40] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:22:43] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:22:43] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:22:43] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:22:46] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:22:46] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:22:46] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:22:49] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:22:49] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:22:49] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:22:52] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:22:52] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:22:52] [SUCCESS] Connected successfully to 10.1.50.173:9094
+[2026-07-17 03:22:55] [SUCCESS] Connected successfully to 10.1.50.173:9090
+[2026-07-17 03:22:55] [SUCCESS] Connected successfully to 10.1.50.173:9092
+[2026-07-17 03:22:55] [SUCCESS] Connected successfully to 10.1.50.173:9094

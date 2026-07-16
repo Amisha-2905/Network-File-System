@@ -259,6 +259,9 @@ int main(int argc, char *argv[])
 
         if (is_sync)
         {
+
+            // printf("Simulating a massive file write... holding lock for 3 seconds.\n");
+            // sleep(3);
             // Only manual unlock required if run in blocking SYNC mode
             int nm_unlock_fd = connect_to_server(nm_ip, nm_port);
             if (nm_unlock_fd >= 0)

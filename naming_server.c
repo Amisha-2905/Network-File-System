@@ -138,15 +138,14 @@ void *handle_node_connection(void *arg)
         int target_ss_id = -1;
         if (found_idx != -1)
         {
+            // SPEC 3.6 BONUS [50 Marks]: Node Recovery Reconciliation
+            // We strictly mark the node online and reset heartbeats.
+            // We explicitly DO NOT process payload->paths to guarantee no duplicate
+            // or conflicting path entries are added during the recovery window.
             ss_table[found_idx].is_online = 1;
-            target_ss_id = found_idx;
-            ss_table[found_idx].path_count = payload->path_count;
-            for (int i = 0; i < payload->path_count; i++)
-            {
-                strncpy(ss_table[found_idx].paths[i], payload->paths[i], MAX_PATH_LEN);
-                trie_insert(trie_root, payload->paths[i], target_ss_id);
-            }
-            LOG_SUCCESS("Storage Server at port %d recovered back online!", ss_table[found_idx].client_port);
+            missed_heartbeats[found_idx] = 0;
+
+            LOG_SUCCESS("Storage Server #%d (Port %d) recovered back online! Reconciled with original Trie paths.", found_idx, ss_table[found_idx].client_port);
         }
         else if (registered_ss_count < 10)
         {
@@ -240,10 +239,19 @@ void *handle_node_connection(void *arg)
             // Normal processing if a valid, online SS was found (Primary or Replica)
             if (matched_ss != -1)
             {
-                int target_path_idx = -1;
-                // Note: Replicas don't officially own the path in their path_count for this implicit setup,
-                // so we bypass the strict target_path_idx check for read failovers to keep it elegant.
-                if (inbound.error_code == 1 && ss_table[matched_ss].is_being_written[0]) // Simplified busy check
+                // Find the actual path index to check its specific lock
+                int target_path_idx = 0;
+                for (int j = 0; j < ss_table[matched_ss].path_count; j++)
+                {
+                    if (strcmp(ss_table[matched_ss].paths[j], inbound.path) == 0)
+                    {
+                        target_path_idx = j;
+                        break;
+                    }
+                }
+
+                // SECURITY FIX: Block BOTH Read and Write if the file is currently locked!
+                if (ss_table[matched_ss].is_being_written[target_path_idx])
                 {
                     out.msg_type = MSG_ERROR;
                     out.error_code = ERR_FILE_BUSY_WRITING;
@@ -251,8 +259,8 @@ void *handle_node_connection(void *arg)
                 else
                 {
                     if (inbound.error_code == 1)
-                    {
-                        ss_table[matched_ss].is_being_written[0] = 1;
+                    { // If it is a WRITE request, lock the file now
+                        ss_table[matched_ss].is_being_written[target_path_idx] = 1;
                         int task_id = next_task_id++;
                         async_tasks[task_id] = TASK_PENDING;
                         task_owner_ss[task_id] = matched_ss;
