@@ -131,4 +131,13 @@ static inline int connect_to_server(const char *ip, int port)
     return sock_fd;
 }
 
+// Set a receive timeout on an already-connected socket (used for heartbeat probes)
+static inline int set_recv_timeout(int sock_fd, int sec)
+{
+    struct timeval timeout;
+    timeout.tv_sec = sec;
+    timeout.tv_usec = 0;
+    return setsockopt(sock_fd, SOL_SOCKET, SO_RCVTIMEO, &timeout, sizeof(timeout));
+}
+
 #endif // NETWORK_H

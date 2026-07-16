@@ -276,6 +276,66 @@ int main(int argc, char *argv[])
             LOG_INFO("Operation queued asynchronously. Query using: ./client %s %d STATUS %d", nm_ip, nm_port, tracking_id);
         }
     }
+    else if (strcmp(cmd, "LIST") == 0)
+    {
+        int nm_fd = connect_to_server(nm_ip, nm_port);
+        if (nm_fd < 0)
+            exit(EXIT_FAILURE);
+
+        Packet req;
+        memset(&req, 0, sizeof(Packet));
+        req.msg_type = MSG_LIST;
+
+        send(nm_fd, &req, sizeof(Packet), 0);
+        Packet initial_ack;
+        recv(nm_fd, &initial_ack, sizeof(Packet), 0); // Clear Initial ACK
+
+        Packet reply;
+        recv(nm_fd, &reply, sizeof(Packet), 0);
+        close(nm_fd);
+
+        LOG_SUCCESS("Accessible Paths in Cluster:\n%s", reply.payload.text);
+    }
+    else if (strcmp(cmd, "COPY") == 0)
+    {
+        if (argc < 6)
+        {
+            LOG_ERROR("Usage: ./client <NM_IP> <NM_Port> COPY <SOURCE_PATH> <DEST_PATH>");
+            exit(EXIT_FAILURE);
+        }
+
+        int nm_fd = connect_to_server(nm_ip, nm_port);
+        if (nm_fd < 0)
+            exit(EXIT_FAILURE);
+        configure_socket_timeout(nm_fd);
+
+        Packet req;
+        memset(&req, 0, sizeof(Packet));
+        req.msg_type = MSG_COPY;
+        strncpy(req.path, path, MAX_PATH_LEN);             // Source path
+        strncpy(req.payload.text, argv[5], MAX_DATA_SIZE); // Destination path
+
+        LOG_INFO("Requesting cluster to copy '%s' to '%s'...", path, argv[5]);
+        send(nm_fd, &req, sizeof(Packet), 0);
+
+        Packet initial_ack;
+        if (recv(nm_fd, &initial_ack, sizeof(Packet), 0) <= 0)
+        {
+            LOG_ERROR("Naming Server COPY request timed out.");
+            close(nm_fd);
+            exit(EXIT_FAILURE);
+        }
+        LOG_INFO("Initial ACK received. Cross-SS copy operation in progress...");
+
+        Packet reply;
+        recv(nm_fd, &reply, sizeof(Packet), 0);
+        close(nm_fd);
+
+        if (reply.msg_type == MSG_ERROR)
+            LOG_ERROR("Copy failed. Error Code: %d", reply.error_code);
+        else
+            LOG_SUCCESS("Command execution confirmed: %s", reply.payload.text);
+    }
     else
     {
         LOG_ERROR("Unrecognized transaction operation command string entered: %s", cmd);

@@ -61,7 +61,13 @@ void *bg_flush_worker(void *arg)
             complete_pkt.request_id = task->request_id;
             strncpy(complete_pkt.path, task->path, MAX_PATH_LEN);
             send(nm_fd, &complete_pkt, sizeof(Packet), 0);
+
+            // WAIT FOR ACK: Prevents premature TCP socket teardown
+            Packet ack;
+            recv(nm_fd, &ack, sizeof(Packet), 0);
             close(nm_fd);
+
+            LOG_SUCCESS("Confirmed Naming Server logged completion for Task ID: %d", task->request_id);
         }
         free(task);
     }
@@ -282,6 +288,11 @@ int main(int argc, char *argv[])
             else
                 reply.error_code = ERR_FILE_NOT_FOUND;
         }
+        else if (task.msg_type == MSG_HEARTBEAT)
+        {
+            reply.msg_type = MSG_ACK;
+            reply.error_code = SUCCESS;
+        }
         else if (task.msg_type == MSG_INFO)
         {
             struct stat st;
@@ -296,6 +307,51 @@ int main(int argc, char *argv[])
             {
                 reply.msg_type = MSG_ERROR;
                 reply.error_code = ERR_FILE_NOT_FOUND;
+            }
+        }
+        else if (task.msg_type == MSG_COPY)
+        {
+            char src_ip[IP_LEN];
+            int src_client_port;
+            char src_path[MAX_PATH_LEN];
+
+            // Extract the Source SS's IP, Port, and File Path [cite: 161]
+            sscanf(task.payload.text, "%[^:]:%d:%s", src_ip, &src_client_port, src_path);
+            LOG_INFO("Executing Cross-SS COPY from %s:%d (Path: %s) to local path: %s", src_ip, src_client_port, src_path, task.path);
+
+            int src_fd = connect_to_server(src_ip, src_client_port);
+            if (src_fd >= 0)
+            {
+                Packet read_req;
+                memset(&read_req, 0, sizeof(Packet));
+                read_req.msg_type = MSG_READ;
+                strncpy(read_req.path, src_path, MAX_PATH_LEN);
+                send(src_fd, &read_req, sizeof(Packet), 0);
+
+                FILE *fp = fopen(task.path, "wb");
+                if (fp)
+                {
+                    Packet chunk;
+                    while (recv(src_fd, &chunk, sizeof(Packet), 0) > 0)
+                    {
+                        if (chunk.msg_type == MSG_ACK || chunk.msg_type == MSG_ERROR)
+                            break;
+                        fwrite(chunk.payload.text, 1, chunk.data_size, fp);
+                    }
+                    fclose(fp);
+                    reply.error_code = SUCCESS;
+                    strcpy(reply.payload.text, "Cross-SS copy transfer completed and saved to disk.");
+                    LOG_SUCCESS("COPY complete for local resource: %s", task.path);
+                }
+                else
+                {
+                    reply.error_code = ERR_PERMISSION_DENIED;
+                }
+                close(src_fd);
+            }
+            else
+            {
+                reply.error_code = ERR_SS_UNREACHABLE;
             }
         }
         send(nm_task_fd, &reply, sizeof(Packet), 0);

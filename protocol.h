@@ -25,8 +25,15 @@ typedef enum
     MSG_ACK,
     MSG_ERROR,
     MSG_STATUS,
-    MSG_ASYNC_COMPLETE
+    MSG_ASYNC_COMPLETE,
+    MSG_HEARTBEAT
 } MsgType;
+
+// Async task ledger states (naming_server.c async_tasks[])
+#define TASK_NONE 0
+#define TASK_PENDING 1
+#define TASK_COMPLETED 2
+#define TASK_FAILED 3
 
 typedef enum
 {
